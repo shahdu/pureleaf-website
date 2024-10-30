@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useContext } from "react";
+import { Product } from "./Product";
+import { ProductContext } from "../../Context/ProductContext";
 
-export default function Products() {
+export const Products = () => {
+  const { products } = useContext(ProductContext);
+
   return (
-    <div>Products</div>
-  )
-}
+    <div className="row">
+      {products?.length > 0 ? (
+        products.map((product) => (
+          <div key={product.id}>
+            <Product product={product} />
+          </div>
+        ))
+      ) : (
+        <p>No products available</p>
+      )}
+    </div>
+  );
+};
