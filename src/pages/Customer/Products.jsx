@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Product } from "../../components/products/Product";
 import { ProductContext } from "../../Context/ProductContext";
+import { Link } from "react-router-dom";
 
 export const Products = () => {
   const { data, isLoading, error } = useContext(ProductContext);
@@ -30,6 +31,7 @@ export const Products = () => {
           data.map((product) => (
             <div key={product.productId} className="col-md-4 mb-4">
               <Product product={product} />
+              <Link to= {`/product/${product.productId}`}>Show details</Link>
             </div>
           ))
         ) : (
