@@ -4,11 +4,13 @@ import { Products } from "../pages/Customer/Products";
 import { Home } from "../pages/Customer/Home";
 import { createBrowserRouter } from "react-router-dom";
 import { ProductDetails } from "../pages/Customer/ProductDetails";
+import Error from "../pages/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <Error/>,
     children: [
         {
             path: "/",

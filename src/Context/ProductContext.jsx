@@ -24,12 +24,14 @@ export const ProductProvider = ({ children }) => {
     };
     fetchProducts();
   }, []);
+  
 
   return (
     <ProductContext.Provider value={{ data, isLoading, error }}>
       {children}
     </ProductContext.Provider>
   );
+  
 };
 ProductProvider.propTypes = {
   children: PropTypes.node,

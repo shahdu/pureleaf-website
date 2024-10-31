@@ -1,10 +1,9 @@
 import React from 'react'
 
-export const ProductName = (props) => {
-    const {name} =props
+export const ProductName = ({ProductName}) => {
     return (
         <div>
-         <p> Name : {name}</p>
+         <p> Name : {ProductName}</p>
         </div>
     )
 }

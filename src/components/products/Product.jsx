@@ -9,8 +9,9 @@ export const Product = ({ product }) => {
     <div className="card shadow-sm">
       <img src={product.image} className="card-img-top" alt={product.productName} />
       <div className="card-body">
-        <h5 className="card-title">{product.productName}</h5>
-        <p className="card-text">{product.description}</p>
+        <h5 className="card-title">
+          {product.productName}
+          </h5>
         <p className="card-text">
           <strong>Price:</strong> ${product.price}
         </p>
