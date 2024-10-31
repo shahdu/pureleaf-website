@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Product } from "../../components/products/Product";
 import { ProductContext } from "../../Context/ProductContext";
 import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const Products = () => {
   const { data, isLoading, error } = useContext(ProductContext);
@@ -26,12 +27,19 @@ export const Products = () => {
     <div className="container my-4">
       <h2 className="text-center mb-4">Products</h2>
       <div className="row">
-        {console.log(data)}
         {data?.length > 0 ? (
           data.map((product) => (
             <div key={product.productId} className="col-md-4 mb-4">
               <Product product={product} />
-              <Link to= {`/product/${product.productId}`}>Show details</Link>
+              <div className="text-center mt-2">
+                <Link
+                  to={`/product/${product.productId}`}
+                  state={product}
+                  className="btn btn-outline-primary"
+                >
+                  Show Details
+                </Link>
+              </div>
             </div>
           ))
         ) : (
