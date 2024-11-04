@@ -4,7 +4,6 @@ import "../Styles/Products/Product.css";
 
 
 export const Product = ({ product }) => {
-  console.log(product);
   return (
     <div className="card shadow-sm">
       <img src={product.image} className="card-img-top" alt={product.productName} />
