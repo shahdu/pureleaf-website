@@ -10,12 +10,27 @@ export const NavBar = () => {
             Home
           </Link>
         </li>
-        <li>
-          <Link to="/products" style={{ color: "#fff", textDecoration: "none" }}>
-            Products
+
+        <li style={{ marginRight: "20px" }}>
+          <Link to="/signIn" style={{ color: "#fff", textDecoration: "none" }}>
+            SignIn
+          </Link>
+        </li>
+
+        <li style={{ marginRight: "20px" }}>
+          <Link to="/signUp" style={{ color: "#fff", textDecoration: "none" }}>
+            SignUp
           </Link>
         </li>
       </ul>
     </nav>
   );
 };
+
+{
+  /* <li>
+          <Link to="/products" style={{ color: "#fff", textDecoration: "none" }}>
+            Products
+          </Link>
+        </li> */
+}

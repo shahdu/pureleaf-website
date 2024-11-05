@@ -18,3 +18,6 @@ export const Product = ({ product }) => {
     </div>
   );
 };
+// <ProductName ProductName={productName} />
+//<Image Image={image} Title={productName} />
+//

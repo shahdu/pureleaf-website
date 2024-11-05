@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const ProductDetails = () => {
+  
   const navigator = useNavigate();
   const { state } = useLocation();
   return (
@@ -13,7 +14,7 @@ export const ProductDetails = () => {
       <p>
         <strong>Price:</strong> ${state.price}
       </p>
-      <button onClick={() => navigator("/products")}>Back To List</button>
+      <button onClick={() => navigator("/")}>Back To List</button>
     </div>
   );
 };

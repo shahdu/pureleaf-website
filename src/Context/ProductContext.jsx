@@ -13,6 +13,7 @@ export const ProductProvider = ({ children }) => {
   const [totalPages, setTotalPages] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(3);
+  // const [sortBy, setSortBy] = useState("ProductName");
   const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export const ProductProvider = ({ children }) => {
       }
     };
     fetchProducts();
-  }, [searchValue,pageNumber]);
+  }, [searchValue,pageNumber,sortOrder]);
   console.log(searchValue);
   return (
     <ProductContext.Provider
