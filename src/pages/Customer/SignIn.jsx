@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { loginUser } from "../../Services/ProductService";
+import { loginUser } from "../../Services/userService";
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -20,16 +20,29 @@ export const SignIn = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!user.email || !user.password) {
+      setError("Email and password are required.");
+      return;
+    }
+  
     try {
-      const token = await loginUser(user.email, user.password);
-      if (token) {
-        const updatedLoginInfo = { email: user.email, isSignIn: true, token };
-        localStorage.setItem("userInfo", JSON.stringify(updatedLoginInfo));
-        navigate("/", { state: updatedLoginInfo });
+      console.log("Login payload:", user);
+  
+      const response = await loginUser(user.email, user.password);
+  
+      console.log("Login response:", response);
+  
+      if (response.token && response.token !== "Email/Password is incorrect") {
+        // Save token and navigate to home
+        localStorage.setItem("token", response.token);
+        
+        navigate("/"); // Redirect to homepage
+      } else {
+        setError("Email/Password is incorrect");
       }
-    } catch (err) {
-      console.error("Login failed:", err); // Log the entire error object
-      setError(err.message); // Set the error message from the backend or a default message
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Login failed. Please try again.");
     }
   };
   
@@ -40,7 +53,9 @@ export const SignIn = () => {
       <form onSubmit={handleSubmit} className="p-4 border rounded shadow-sm">
         {error && <p className="text-danger">{error}</p>}
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email:</label>
+          <label htmlFor="email" className="form-label">
+            Email:
+          </label>
           <input
             type="email"
             name="email"
@@ -52,7 +67,9 @@ export const SignIn = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password:</label>
+          <label htmlFor="password" className="form-label">
+            Password:
+          </label>
           <input
             type="password"
             name="password"
@@ -63,7 +80,9 @@ export const SignIn = () => {
             className="form-control"
           />
         </div>
-        <button type="submit" className="btn btn-primary w-100">Sign In</button>
+        <button type="submit" className="btn btn-primary w-100">
+          Sign In
+        </button>
       </form>
     </div>
   );

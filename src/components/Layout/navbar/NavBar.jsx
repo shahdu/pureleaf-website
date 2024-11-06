@@ -20,7 +20,12 @@ export const NavBar = () => {
         <li style={{ marginRight: "20px" }}>
           <Link to="/signUp" style={{ color: "#fff", textDecoration: "none" }}>
             SignUp
-          </Link>
+          </Link>    
+        </li>
+        <li style={{ marginRight: "20px" }}>
+          <Link to="/profile" style={{ color: "#fff", textDecoration: "none" }}>
+          Profile
+          </Link>    
         </li>
       </ul>
     </nav>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { registerUser } from "../../Services/ProductService";
+import { registerUser } from "../../Services/userService";
 
 export const SignUp = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ export const SignUp = () => {
     if (validDataInput()) {
       try {
         const response = await registerUser(user.name, user.password, user.email);
-        console.log(response); // Handle successful registration response
+        console.log(response);
 
         // Save user data in local storage
         const userInfo = {
@@ -66,7 +66,7 @@ export const SignUp = () => {
         };
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-        navigate("/profile");
+        navigate("/profile", { state: userInfo });
       } catch (error) {
         console.error("Registration failed:", error);
         setErrors({ ...errors, server: "Registration failed. Please try again." });
