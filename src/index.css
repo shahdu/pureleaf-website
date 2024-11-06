@@ -66,3 +66,10 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.home-page {
+  background-color: #e0f7e9; /* Light green background */
+  color: #2f6a4e; /* Dark green text */
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+  text-align: center;
+}

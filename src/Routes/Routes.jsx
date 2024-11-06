@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { Layout } from "../components/Layout/Layout";
 import { Products } from "../pages/Customer/Products";
-import { Home } from "../pages/Customer/Home";
+import { ProductsList } from "../pages/Customer/ProductsList";
 import { ProductDetails } from "../pages/Customer/ProductDetails";
 import Error from "../pages/Error";
 import { SignIn } from "../pages/Customer/SignIn";
@@ -11,6 +11,7 @@ import { SignUp } from "../pages/Customer/SignUp";
 import { Profile } from "../pages/Customer/Profile";
 import { AddProduct } from "../pages/Admin/AddProduct";
 import { CustomerDashboard } from "./ProtectRoutes/CustomerDashboard";
+import { Home } from "../pages/Customer/Home";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
         {
             path: "/",
             element: <Home />,
+          },
+          {
+            path: "/productsList",
+            element: <ProductsList />,
           },
       {
         path: "/products",

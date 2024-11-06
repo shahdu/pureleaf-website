@@ -26,6 +26,21 @@ export const getAllProducts = async (
   return response.data;
 };
 
+// Add a new product
+export const addProduct = async (productData) => {
+  try {
+    const response = await axios.post(baseURL, productData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error adding product:", error);
+    throw error;
+  }
+};
+
 
 
 

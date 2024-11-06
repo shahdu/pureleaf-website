@@ -14,7 +14,7 @@ export const ProductDetails = () => {
       <p>
         <strong>Price:</strong> ${state.price}
       </p>
-      <button onClick={() => navigator("/")}>Back To List</button>
+      <button onClick={() => navigator("/productsList")}>Back To List</button>
     </div>
   );
 };
