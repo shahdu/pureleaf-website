@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Product } from "../../components/products/Product"; // Assuming Product is your product component
-import { ProductContext } from "../../Context/ProductContext";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import { Product } from "../../components/products/Product"; 
+import { ProductContext } from "../../Context/ProductContext";
+
 
 export const Products = () => {
   const { data, isLoading, error } = useContext(ProductContext);

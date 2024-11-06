@@ -2,6 +2,19 @@ import axios from "axios";
 
 const User_URL = "http://localhost:5000/api/v1/users";
 
+//get user by id
+export const getUserById = async (userId) => {
+  try {
+    const response = await axios.get(`${User_URL}/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user by ID:", error);
+    throw error;
+  }
+};
+
+
+//register
 export const registerUser = async (userName, password, email) => {
   try {
     const payload = {
@@ -26,7 +39,7 @@ export const registerUser = async (userName, password, email) => {
     throw error;
   }
 };
-
+//login 
 export const loginUser = async (email, password) => {
     try {
       const payload = {
@@ -44,8 +57,8 @@ export const loginUser = async (email, password) => {
         }
       );
   
-      console.log("Full response:", response); // Log the full response object
-      return response.data; // Ensure you're returning the correct data
+      console.log("Full response:", response); 
+      return response.data; 
     } catch (error) {
       console.error("Error logging in user:", error.response?.data || error.message);
       throw error;
@@ -53,12 +66,4 @@ export const loginUser = async (email, password) => {
   };
   
 
-export const getAllUsers = async () => {
-  const response = await axios.get(User_URL);
-  return response.data;
-};
 
-export const getSingleUser = async (id) => {
-    const response = await axios.get(`${User_URL}/${id}`);
-    return response.data;
-  };

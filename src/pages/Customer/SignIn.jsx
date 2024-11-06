@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import { loginUser } from "../../Services/userService";
 
 export const SignIn = () => {
@@ -35,8 +36,8 @@ export const SignIn = () => {
       if (response.token && response.token !== "Email/Password is incorrect") {
         // Save token and navigate to home
         localStorage.setItem("token", response.token);
-        
-        navigate("/"); // Redirect to homepage
+        localStorage.setItem("isSignIn", true);
+        navigate("/profile"); // Redirect to homepage
       } else {
         setError("Email/Password is incorrect");
       }

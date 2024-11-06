@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
-import { ProductContext } from '../../Context/ProductContext';
 import { TextField } from '@mui/material';
+
+import { ProductContext } from '../../Context/ProductContext';
+
 
 export const SearchInput = () => {
    const { setSearchValue} = useContext(ProductContext);
