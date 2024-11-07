@@ -14,6 +14,8 @@ export const ProductDetails = () => {
       <p>
         <strong>Price:</strong> ${state.price}
       </p>
+      <p> <strong>Category:</strong> {state.category.categoryName}</p>
+
       <button onClick={() => navigator("/productsList")}>Back To List</button>
     </div>
   );

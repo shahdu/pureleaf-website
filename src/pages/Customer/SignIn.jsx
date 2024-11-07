@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { loginUser } from "../../Services/userService";
+import { decodeToken } from "../../Utilities/TokenDecode";
+
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -37,6 +39,11 @@ export const SignIn = () => {
         // Save token and navigate to home
         localStorage.setItem("token", response.token);
         localStorage.setItem("isSignIn", true);
+        // const role = token ? JSON.parse(atob(token.split('.')[1])).role : null;
+//         const token = localStorage.getItem("token");
+//         const decoded = decodeToken(token);
+//  console.log(decoded);
+
         navigate("/profile"); // Redirect to homepage
       } else {
         setError("Email/Password is incorrect");

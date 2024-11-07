@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,12 +8,14 @@ import { getUserById } from "../../Services/userService";
 
 export const Profile = () => {
   const navigate = useNavigate();
+  var role ="N/A";
 
   const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    
     if (!token) {
       navigate("/signIn"); 
       return;
@@ -40,7 +43,12 @@ export const Profile = () => {
   if (!userInfo) {
     return <p>Loading...</p>;
   }
-
+if(userInfo.role==1){
+  role ="Customer";
+}
+if(userInfo.role==0){
+  role ="Admin";
+}
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-4">User Profile</h1>
@@ -51,7 +59,7 @@ export const Profile = () => {
           <>
             <p><strong>Username:</strong> {userInfo.userName || "N/A"}</p>
             <p><strong>Email:</strong> {userInfo.email || "N/A"}</p>
-            <p><strong>Role:</strong> {userInfo.role || "N/A"}</p>
+            <p><strong>Role:</strong> {role}</p>
             <p><strong>Phone:</strong> {userInfo.phone || "N/A"}</p>
             {userInfo.image && (
               <div>

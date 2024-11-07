@@ -6,7 +6,13 @@ import { SignIn } from '../../pages/Customer/SignIn';
 export const CustomerDashboard = () => {
   const signIn = JSON.parse(localStorage.getItem("isSignIn"));
 
-  const isAuthenticated = signIn && signIn === true;
+  const token = localStorage.getItem("token");
+
+  const decodedToken = token ? JSON.parse(atob(token.split(".")[1])) : null;
+
+  const role = decodedToken ? decodedToken.role : null;
+
+  const isAuthenticated = signIn && role === "Customer";
   return (
     <div>
       {isAuthenticated ? <Outlet /> : <SignIn />}

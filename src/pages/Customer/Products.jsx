@@ -23,6 +23,7 @@ export const Products = () => {
       </div>
     );
   }
+  console.log(data);
 
   return (
     <>

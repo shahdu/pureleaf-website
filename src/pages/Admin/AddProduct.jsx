@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
-import { addProduct } from '../../Services/ProductService';
-
+import React, { useState, useContext } from "react";
+import { addProduct } from "../../Services/ProductService";
+import { CategoryContext } from "../../Context/CategoryContext";
+import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../../Context/ProductContext";
 
 export const AddProduct = () => {
+  const { categories } = useContext(CategoryContext); // Get context state and setter
+  const { fetchProducts } = useContext(ProductContext); 
+  const navigator = useNavigate();
+
   const [product, setProduct] = useState({
     ProductName: "",
     Description: "",
@@ -25,8 +31,8 @@ export const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate input (example)
-    if (!product.ProductName || !product.Price || !product.Quantity) {
+    // Validate input
+    if (!product.ProductName || !product.Price || !product.Quantity || !product.categoryId) {
       setMessage("Please fill out all required fields.");
       return;
     }
@@ -36,6 +42,9 @@ export const AddProduct = () => {
 
       if (response.success) {
         setMessage("Product added successfully!");
+        // setCategories((prevCategories) => [...prevCategories, response.newProduct]);
+
+        // setCategories([...categories, response.newProduct]); 
         // Optionally reset the form
         setProduct({
           ProductName: "",
@@ -45,6 +54,9 @@ export const AddProduct = () => {
           categoryId: "",
           Image: "",
         });
+        fetchProducts();
+
+        navigator("/productsList");
       } else {
         setMessage("Failed to add product.");
       }
@@ -105,15 +117,22 @@ export const AddProduct = () => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="categoryId" className="form-label">Category ID:</label>
-          <input
-            type="text"
+          <label htmlFor="categoryId" className="form-label">Category:</label>
+          <select
             name="categoryId"
             id="categoryId"
             value={product.categoryId}
             onChange={handleChange}
             className="form-control"
-          />
+            required
+          >
+            <option value="">Select Category</option>
+            {categories.map((category) => (
+              <option key={category.categoryId} value={category.categoryId}>
+                {category.categoryName}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="mb-3">
           <label htmlFor="Image" className="form-label">Image URL:</label>
@@ -131,4 +150,3 @@ export const AddProduct = () => {
     </div>
   );
 };
-

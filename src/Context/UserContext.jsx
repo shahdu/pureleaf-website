@@ -16,6 +16,10 @@
 
 // export const UserProvider = ({ children }) => {
 //   const [isSignIn, setIsSignIn] = useState(false);
+//const [userLoggedIn, setUserLoggedIn] = useState(null);
+
+// use useEffect() to check whether localStorate has user data logged in or not 
+// if in local storage has user logged in data, setUserLoggedIn(userLoggedIn) 
 
 //   // Update sign-in state
 //   const login = () => {

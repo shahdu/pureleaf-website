@@ -12,31 +12,32 @@ export const ProductProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
   const [totalPages, setTotalPages] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(3);
+  const [pageSize, setPageSize] = useState(10);
   // const [sortBy, setSortBy] = useState("ProductName");
   const [sortOrder, setSortOrder] = useState("asc");
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setIsLoading(true);
-      try {
-        const response = await getAllProducts(
-          searchValue,
-          pageNumber,
-          pageSize,
-          sortOrder
-        );
-        console.log("searchValue:", searchValue);
-        console.log("API response:", response);
+  const fetchProducts = async () => {
+    setIsLoading(true);
+    try {
+      const response = await getAllProducts(
+        searchValue,
+        pageNumber,
+        pageSize,
+        sortOrder
+      );
+      console.log("searchValue:", searchValue);
+      console.log("API response:", response);
 
-        setData(response.data.items);
-        setTotalPages(response.data.totalPages);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      setData(response.data.items);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+
     fetchProducts();
   }, [searchValue,pageNumber,sortOrder]);
   console.log(searchValue);
@@ -55,6 +56,7 @@ export const ProductProvider = ({ children }) => {
         sortOrder,
         setSortOrder,
         totalPages,
+        fetchProducts,
       }}
     >
       {children}
