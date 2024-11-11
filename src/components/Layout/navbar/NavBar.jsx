@@ -163,8 +163,24 @@ export const NavBar = () => {
                 >
                   Category List
                 </Button>
+
+                <Button
+                  component={Link}
+                  to="/dashboard/admin/users"
+                  sx={{
+                    color: "#388E3C",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "#2E7D32" },
+                  }}
+                >
+                  users List
+                </Button>
+
               </>
-            )}
+            )
+            
+            }
 
             {token && role === "Customer" && (
               <Button

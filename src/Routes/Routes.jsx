@@ -18,6 +18,9 @@ import { CategoryList } from "../pages/Admin/CategoryList";
 import { AdminDashboard } from "./ProtectRoutes/AdminDashboard";
 import { ProductsAdminList } from "../pages/Admin/ProductsAdminList";
 import { UpdateProduct } from "../pages/Admin/UpdateProduct";
+// import { UsersList } from "../pages/Admin/UsersList";
+import { Users } from "../components/Users/Users";
+import { UsersList } from "../pages/Admin/UsersList";
 
 export const router = createBrowserRouter([
   {
@@ -48,11 +51,11 @@ export const router = createBrowserRouter([
       {
         path: "/productsList",
         element: <ProductsList />,
-      }, 
+      },
       {
         path: "/updateProduct/:productId",
         element: <UpdateProduct />,
-      }, 
+      },
       {
         path: "/dashboard/admin",
         element: <AdminDashboard />,
@@ -65,25 +68,29 @@ export const router = createBrowserRouter([
             path: "addProduct",
             element: <AddProduct />,
           },
-      {
-        path: "categoryList",
-        element: <CategoryList />,
-      },{
-        path: "addCategory",
-        element: <AddCategory />,
-      },
+          {
+            path: "categoryList",
+            element: <CategoryList />,
+          },
+          {
+            path: "addCategory",
+            element: <AddCategory />,
+          },
+          ,
+          {
+            path: "users",
+            element: <UsersList />,
+          },
         ],
       },
       {
         path: "/dashboard/customer",
         element: <CustomerDashboard />,
         children: [
-       
-            {
+          {
             path: "cart",
             element: <Cart />,
           },
-     
         ],
       },
     ],

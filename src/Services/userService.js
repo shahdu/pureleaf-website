@@ -13,6 +13,60 @@ export const getUserById = async (userId) => {
   }
 };
 
+//get users
+export const getUsers = async (
+  searchValue = "",
+  pageNumber = 1,
+  pageSize = 10,
+  sortOrder = "asc"
+) => {
+  const params = new URLSearchParams();
+  params.append("pageNumber", pageNumber);
+  params.append("pageSize", pageSize);
+
+  if (searchValue) {
+    params.append("searchTerm", searchValue);
+  }
+  if (sortOrder) {
+    params.append("sortOrder", sortOrder);
+  }
+  try {
+    const response = await axios.get(`${User_URL}?${params.toString()}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user by ID:", error);
+    throw error;
+  }
+};
+//delete user by id 
+
+export const deleteUserById = async (userId) => {
+  try {
+    const response = await axios.delete(`${User_URL}/${userId}`);
+    console.log("deleted user:", response.data);  
+    return response.data;  
+  } catch (error) {
+    console.error("Error fetching user by ID:", error);
+    throw error;
+  }
+};
+
+
+// Update user
+export const updateUser = async (userId, updatedData) => {
+  try {
+    const response = await axios.put(`${User_URL}/${userId}`, updatedData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw error;
+  }
+};
 
 //register
 export const registerUser = async (userName, password, email) => {

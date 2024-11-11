@@ -1,43 +1,60 @@
+// CategoryContext.js
+import React, { createContext, useState, useEffect } from "react";
+import { getUsers } from "../Services/userService";
 
-//handel sign in and create the signout  
-// 
+export const UsersContext = createContext();
+
+export const UserProvider = ({ children }) => {
+  const [users, setUsers] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
+  const [totalPages, setTotalPages] = useState(1);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const fetchUsers = async () => {
+    try {
+      const usersData = await getUsers( searchValue,
+        pageNumber,
+        pageSize,
+        sortOrder);
+      setUsers(usersData.data.items);
+      setTotalPages(usersData.data.totalPages);
+
+    } catch (error) {
+      setError(error);
+      console.error("Error fetching users:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const refreshUsers = async () => {
+    await fetchUsers();
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, [searchValue,pageNumber,sortOrder]);
 
 
-
-
-// // src/context/UserContext.js
-// import React, { createContext, useState, useContext } from "react";
-
-// // Create the context
-// const UserContext = createContext();
-
-// // Custom hook to use the UserContext
-// export const useUserContext = () => useContext(UserContext);
-
-// export const UserProvider = ({ children }) => {
-//   const [isSignIn, setIsSignIn] = useState(false);
-//const [userLoggedIn, setUserLoggedIn] = useState(null);
-
-// use useEffect() to check whether localStorate has user data logged in or not 
-// if in local storage has user logged in data, setUserLoggedIn(userLoggedIn) 
-
-//   // Update sign-in state
-//   const login = () => {
-//     setIsSignIn(true);
-//     localStorage.setItem("token", "your_jwt_token");// Store token or set other states
-//     console.log(setIsSignIn); 
-//   };
-
-//   // Update sign-out state
-//   const logout = () => {
-//     setIsSignIn(false);
-//     localStorage.removeItem("token"); // Clear token or reset other states
-//     console.log(setIsSignIn); 
-//   };
-
-//   return (
-//     <UserContext.Provider value={{ isSignIn, login, logout }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
+  return (
+    <UsersContext.Provider value={{ users ,isLoading,
+      error,
+      searchValue,
+      setSearchValue,
+      pageNumber,
+      setPageNumber,
+      pageSize,
+      setPageSize,
+      sortOrder,
+      setSortOrder,
+      totalPages,
+      fetchUsers,
+      refreshUsers,
+      }}>
+      {children}
+    </UsersContext.Provider>
+  );
+};

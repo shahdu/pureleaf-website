@@ -12,7 +12,7 @@ export const ProductProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
   const [totalPages, setTotalPages] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(5);
   // const [sortBy, setSortBy] = useState("ProductName");
   const [sortOrder, setSortOrder] = useState("asc");
 

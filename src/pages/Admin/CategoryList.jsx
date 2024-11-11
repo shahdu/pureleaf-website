@@ -1,7 +1,7 @@
 // components/CategoryList.js
 import React, { useContext } from 'react';
 import { CategoryContext } from '../../Context/CategoryContext';
-
+  
 export const CategoryList = () => {
   const { categories, loading, error } = useContext(CategoryContext);
 
