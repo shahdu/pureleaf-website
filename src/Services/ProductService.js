@@ -40,6 +40,45 @@ export const addProduct = async (productData) => {
     throw error;
   }
 };
+export const getProductById = async (productId) => {
+  try {
+    const response = await axios(`${baseURL}/${productId}`);
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return []; 
+  }
+};
+
+export const deleteProductById = async (productId) => {
+  try {
+    const response = await axios.delete(`${baseURL}/${productId}`);
+    console.log("deleted product:", response.data);  
+    return response.data;  
+  } catch (error) {
+    console.error("Error fetching product by ID:", error);
+    throw error;
+  }
+};
+
+// Update an existing product
+export const updateProduct = async (productId, updatedData) => {
+  try {
+    const response = await axios.put(`${baseURL}/${productId}`, updatedData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating product:", error);
+    throw error;
+  }
+};
+
+
 
 
 

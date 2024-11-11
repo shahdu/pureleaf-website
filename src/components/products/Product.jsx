@@ -1,37 +1,150 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../Styles/Products/Product.css";
+import React, { useContext } from "react";
 import { useCart } from "../../hooks/useCart";
-import Button from '@mui/material/Button';
-
+import { Button, Card, CardContent, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { deleteProductById } from "../../Services/ProductService";
+import { ProductContext } from "../../Context/ProductContext";
 
 export const Product = ({ product }) => {
-  console.log(product);
-  console.log(product.quantity);
   const { addToCart } = useCart();
+  const {  refreshProducts } = useContext(ProductContext);
+
+  const handleDelete = async () => {
+    try {
+      await deleteProductById(product.productId);
+      console.log("Product deleted:", product.productId);
+      refreshProducts();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+
 
   return (
-    <div className="card shadow-sm">
-      <img src={product.image} className="card-img-top" alt={product.productName} />
-      <div className="card-body">
-        <h5 className="card-title">
+    <Card
+      sx={{
+        maxWidth: 345,
+        boxShadow: 4,
+        marginBottom: 2,
+        borderRadius: 2,
+        backgroundColor: "#E8F5E9", // Light green for eco-friendly look
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "relative", // Needed to position the frame inside the div
+        }}
+      >
+        <img
+          src={product.image}
+          alt={product.productName}
+          style={{
+            width: "100%", // Takes the full width of the parent div
+            height: "auto", // Maintain the image aspect ratio
+            borderRadius: "12px", // Soft corners for the image
+            border: "4px solid #A5D6A7", // Green border framing the image
+            boxSizing: "border-box", // Ensures the border is part of the total size of the image
+          }}
+        />
+      </div>
+      <CardContent>
+        <Typography variant="h6" component="div" color="text.primary">
           {product.productName}
-          </h5>
-        <p className="card-text">
-          <strong>Price:</strong> ${product.price}
-        </p>
-
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <strong>Price:</strong> ${product.price.toFixed(2)}
+        </Typography>
         <Button
           variant="contained"
-          color="secondary"
           fullWidth
-          sx={{ marginTop: '16px' }} 
+          sx={{
+            marginTop: 2,
+            backgroundColor: "#388E3C",
+            color: "white",
+            "&:hover": {
+              backgroundColor: "#2E7D32",
+            },
+          }}
           onClick={() => addToCart(product)}
         >
           Add To Cart
         </Button>
-      </div>
-    </div>
+        <Link
+        
+            to={`/updateProduct/${product.productId}`}
+            className="btn btn-outline-warning"
+            style={{
+              display: "block",
+              textAlign: "center",
+              marginTop: "8px",
+              padding: "8px 16px",
+              backgroundColor: "#FFC107",
+              color: "#ffffff",
+              borderRadius: "4px",
+              fontWeight: "normal",
+              textDecoration: "none",
+              transition: "background-color 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#FFA000";
+
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "#FFC107";
+              console.log('@@Product ID:', product.productId);
+
+            }}
+          >
+            Edit Product
+          </Link>
+
+        {/* Show Details Button */}
+        <div style={{ marginTop: "8px" }}>
+          <Link
+            to={`/product/${product.productId}`}
+            state={product}
+            className="btn btn-outline-success"
+            style={{
+              display: "block",
+              textAlign: "center",
+              marginTop: "8px",
+              padding: "8px 16px",
+              backgroundColor: "#388E3C",
+              color: "#ffffff",
+              borderRadius: "4px",
+              fontWeight: "normal", // Adjusted to normal weight
+              textDecoration: "none",
+              transition: "background-color 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#2E7D32";  // Darker green on hover
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "#388E3C";  // Reset to original color
+            }}
+          >
+            Show Details
+          </Link>
+          <Button
+          variant="outlined"
+          color="error"
+          fullWidth
+          sx={{
+            marginTop: 2,
+            "&:hover": {
+              backgroundColor: "#f44336",
+              color: "white",
+            },
+          }}
+          onClick={handleDelete}
+        >
+          Delete Product
+        </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
-

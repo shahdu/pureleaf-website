@@ -16,6 +16,8 @@ import { Cart } from "../components/Cart/Cart";
 import { AddCategory } from "../pages/Admin/AddCategory";
 import { CategoryList } from "../pages/Admin/CategoryList";
 import { AdminDashboard } from "./ProtectRoutes/AdminDashboard";
+import { ProductsAdminList } from "../pages/Admin/ProductsAdminList";
+import { UpdateProduct } from "../pages/Admin/UpdateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -48,9 +50,17 @@ export const router = createBrowserRouter([
         element: <ProductsList />,
       }, 
       {
+        path: "/updateProduct/:productId",
+        element: <UpdateProduct />,
+      }, 
+      {
         path: "/dashboard/admin",
         element: <AdminDashboard />,
         children: [
+          {
+            path: "productsAdminList",
+            element: <ProductsAdminList />,
+          },
           {
             path: "addProduct",
             element: <AddProduct />,

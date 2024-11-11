@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { getAllProducts } from "../Services/ProductService";
+import { getAllProducts,  getProductById } from "../Services/ProductService";
 
 export const ProductContext = createContext();
 
@@ -15,6 +15,7 @@ export const ProductProvider = ({ children }) => {
   const [pageSize, setPageSize] = useState(10);
   // const [sortBy, setSortBy] = useState("ProductName");
   const [sortOrder, setSortOrder] = useState("asc");
+
 
   const fetchProducts = async () => {
     setIsLoading(true);
@@ -36,11 +37,17 @@ export const ProductProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+  const refreshProducts = async () => {
+    await fetchProducts();
+  };
   useEffect(() => {
 
     fetchProducts();
   }, [searchValue,pageNumber,sortOrder]);
-  console.log(searchValue);
+
+ 
+
+
   return (
     <ProductContext.Provider
       value={{
@@ -57,6 +64,7 @@ export const ProductProvider = ({ children }) => {
         setSortOrder,
         totalPages,
         fetchProducts,
+        refreshProducts,
       }}
     >
       {children}

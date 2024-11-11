@@ -1,119 +1,197 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AppBar, Toolbar, Typography, Button, Box, Container, IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import logo from "../../../assets/Images/PureLeaf.jpg";
 
 export const NavBar = () => {
   const navigate = useNavigate();
-  // get userLoggedIn data from userContext and then use conditional rendering 
-
   const token = localStorage.getItem("token");
 
   const decodedToken = token ? JSON.parse(atob(token.split(".")[1])) : null;
   const role = decodedToken ? decodedToken.role : null;
+
   const handleLogout = () => {
     localStorage.removeItem("isSignIn");
-    //to remove the profile data
     localStorage.removeItem("token");
-
     setTimeout(() => navigate("/signIn"), 100);
   };
+
   return (
-    <nav style={{ backgroundColor: "#333", padding: "10px" }}>
-      <ul style={{ display: "flex", listStyle: "none", margin: 0, padding: 0 }}>
-        <li style={{ marginRight: "20px" }}>
-          <Link to="/" style={{ color: "#fff", textDecoration: "none" }}>
-            Home
-          </Link>
-        </li>
-        
-          <li style={{ marginRight: "20px" }}>
-            <Link
+    <AppBar position="sticky" sx={{ backgroundColor: "rgb(225, 226, 221)", boxShadow: 3 }}>
+      <Container maxWidth="lg">
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          {/* Left Section: Logo and Name */}
+          <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+            <img src={logo} alt="Logo" style={{ width: "100px", height: "100px" }} />
+            <Typography variant="h6" sx={{ color: "#2E7D32", fontWeight: "bold" }}>
+              PureLeaf
+            </Typography>
+          </Box>
+
+          {/* Right Section: Navigation Buttons */}
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <Button
+              component={Link}
+              to="/"
+              sx={{
+                color: "#388E3C", // Eco-friendly green text color
+                fontWeight: "bold",
+                textTransform: "none",
+                "&:hover": { backgroundColor: "#2E7D32" },
+              }}
+            >
+              Home
+            </Button>
+            <Button
+              component={Link}
               to="/productsList"
-              style={{ color: "#fff", textDecoration: "none" }}
+              sx={{
+                color: "#388E3C",
+                fontWeight: "bold",
+                textTransform: "none",
+                "&:hover": { backgroundColor: "#2E7D32" },
+              }}
             >
               Products
-            </Link>
-          </li>
-        
-        {!token && (
-          <li style={{ marginRight: "20px" }}>
-            <Link
-              to="/signIn"
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              SignIn
-            </Link>
-          </li>
-        )}
-        {!token && (
-          <li style={{ marginRight: "20px" }}>
-            <Link
-              to="/signUp"
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              SignUp
-            </Link>
-          </li>
-        )}
-        {token &&  (
-          <li style={{ marginRight: "20px" }}>
-            <Link
-              to="/profile"
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              Profile
-            </Link>
-          </li>
-        )}
-        {token && (
-          <li style={{ marginRight: "20px" }}>
-            <Link
-              className="nav-link"
-              onClick={handleLogout}
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              Sign Out
-            </Link>
-          </li>
-        )}
-        {token && role === "Admin" && (
-          <li style={{ marginRight: "20px" }}>
-            <Link
-              to="/dashboard/admin/addProduct"
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              Add Product
-            </Link>
-          </li>
-        )}
-        {token && role === "Admin" && (
-          <li style={{ marginRight: "20px" }}>
-            <Link
-              to="/dashboard/admin/addCategory"
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              Add Category
-            </Link>
-          </li>
-        )}
-        {token && role === "Admin" && (
-          <li style={{ marginRight: "20px" }}>
-            <Link
-              to="/dashboard/admin/categoryList"
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              Category List
-            </Link>
-          </li>
-        )}
-        {token && role === "Customer" && (
-          <li style={{ marginRight: "20px" }}>
-            <Link to="/dashboard/customer/cart" style={{ color: "#fff", textDecoration: "none" }}>
-              Cart
-            </Link>
-          </li>
-        )}
-      </ul>
-    </nav>
+            </Button>
+
+            {!token && (
+              <>
+                <Button
+                  component={Link}
+                  to="/signIn"
+                  sx={{
+                    color: "#388E3C",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "#2E7D32" },
+                  }}
+                >
+                  Sign In
+                </Button>
+                <Button
+                  component={Link}
+                  to="/signUp"
+                  sx={{
+                    color: "#388E3C",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "#2E7D32" },
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
+
+            {token && (
+              <>
+                <Button
+                  component={Link}
+                  to="/profile"
+                  sx={{
+                    color: "#388E3C",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "#2E7D32" },
+                  }}
+                >
+                  Profile
+                </Button>
+                <Button
+                  onClick={handleLogout}
+                  sx={{
+                    color: "#388E3C",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "#2E7D32" },
+                  }}
+                >
+                  Sign Out
+                </Button>
+              </>
+            )}
+
+            {token && role === "Admin" && (
+              <>
+                <Button
+                  component={Link}
+                  to="/dashboard/admin/addProduct"
+                  sx={{
+                    color: "#388E3C",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "#2E7D32" },
+                  }}
+                >
+                  Add Product
+                </Button>
+                <Button
+                  component={Link}
+                  to="/dashboard/admin/productsAdminList"
+                  sx={{
+                    color: "#388E3C",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "#2E7D32" },
+                  }}
+                >
+                  Products Admin List
+                </Button>
+                <Button
+                  component={Link}
+                  to="/dashboard/admin/addCategory"
+                  sx={{
+                    color: "#388E3C",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "#2E7D32" },
+                  }}
+                >
+                  Add Category
+                </Button>
+                <Button
+                  component={Link}
+                  to="/dashboard/admin/categoryList"
+                  sx={{
+                    color: "#388E3C",
+                    fontWeight: "bold",
+                    textTransform: "none",
+                    "&:hover": { backgroundColor: "#2E7D32" },
+                  }}
+                >
+                  Category List
+                </Button>
+              </>
+            )}
+
+            {token && role === "Customer" && (
+              <Button
+                component={Link}
+                to="/dashboard/customer/cart"
+                sx={{
+                  color: "#388E3C",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  "&:hover": { backgroundColor: "#2E7D32" },
+                }}
+              >
+                Cart
+              </Button>
+            )}
+          </Box>
+
+          {/* Optional Mobile Menu Icon */}
+          <IconButton
+            sx={{ display: { xs: "block", sm: "none" } }}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 };
