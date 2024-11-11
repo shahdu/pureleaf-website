@@ -1,11 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { updateProduct, getProductById } from "../../Services/ProductService";
-import { CategoryContext } from "../../Context/CategoryContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductContext } from "../../Context/ProductContext";
 
 export const UpdateProduct = () => {
-  const { categories } = useContext(CategoryContext); 
   const { fetchProducts } = useContext(ProductContext); 
   const navigate = useNavigate();
   const { productId } = useParams(); 
@@ -13,7 +11,6 @@ export const UpdateProduct = () => {
     ProductName: "",
     Description: "",
     Price: 0,
-    categoryId: "",
     Image: "",
   });
 
@@ -28,9 +25,8 @@ export const UpdateProduct = () => {
           setProduct({
             ProductName: response.data.productName || "",  
             Description: response.data.description || "",
-            Price: response.data.price ||0,
-            Quantity: response.data.quantity || "",
-            categoryId: response.data.categoryId || "",
+            Price: response.data.price || 0,
+            categoryId: response.data.categoryId || "",  // You can keep this if you need to store categoryId but don't display it
             Image: response.data.image || "",
           });
         } else {
@@ -56,19 +52,13 @@ export const UpdateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate input
-    if (!product.ProductName || !product.Price || !product.Quantity || !product.categoryId) {
-      setMessage("Please fill out all required fields.");
-      return;
-    }
-
     try {
       const response = await updateProduct(productId, product);
 
       if (response.success) {
         setMessage("Product updated successfully!");
         fetchProducts(); 
-        navigate("/productsList"); 
+        navigate("/dashboard/admin/products"); 
       } else {
         setMessage("Failed to update product.");
       }
@@ -116,25 +106,7 @@ export const UpdateProduct = () => {
             required
           />
         </div>
-      
-        <div className="mb-3">
-          <label htmlFor="categoryId" className="form-label">Category:</label>
-          <select
-            name="categoryId"
-            id="categoryId"
-            value={product.categoryId}
-            onChange={handleChange}
-            className="form-control"
-            required
-          >
-            <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={category.categoryId} value={category.categoryId}>
-                {category.categoryName}
-              </option>
-            ))}
-          </select>
-        </div>
+        {/* Removed the Category dropdown */}
         <div className="mb-3">
           <label htmlFor="Image" className="form-label">Image URL:</label>
           <input

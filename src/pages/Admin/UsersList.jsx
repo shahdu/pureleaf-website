@@ -7,7 +7,7 @@ import { UserPagination } from "../../components/Users/UserPagination";
 export const UsersList = () => {
   return (
     <div>
-      Products List
+    
       <UserSearchInput />
       <Users />
       <UserPagination/>

@@ -1,6 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Button, Box, Container, IconButton } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  Container,
+  IconButton,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../../assets/Images/PureLeaf.jpg";
 
@@ -18,24 +26,38 @@ export const NavBar = () => {
   };
 
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: "rgb(225, 226, 221)", boxShadow: 3 }}>
+    <AppBar
+      position="sticky"
+      sx={{ backgroundColor: "rgb(225, 226, 221)", boxShadow: 3 }}
+    >
       <Container maxWidth="lg">
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          {/* Left Section: Logo and Name */}
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-            <img src={logo} alt="Logo" style={{ width: "100px", height: "100px" }} />
-            <Typography variant="h6" sx={{ color: "#2E7D32", fontWeight: "bold" }}>
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ width: "100px", height: "100px" }}
+            />
+            <Typography
+              variant="h6"
+              sx={{ color: "#2E7D32", fontWeight: "bold" }}
+            >
               PureLeaf
             </Typography>
           </Box>
 
-          {/* Right Section: Navigation Buttons */}
           <Box sx={{ display: "flex", gap: 2 }}>
             <Button
               component={Link}
               to="/"
               sx={{
-                color: "#388E3C", // Eco-friendly green text color
+                color: "#388E3C", 
                 fontWeight: "bold",
                 textTransform: "none",
                 "&:hover": { backgroundColor: "#2E7D32" },
@@ -54,6 +76,18 @@ export const NavBar = () => {
               }}
             >
               Products
+            </Button>
+            <Button
+              component={Link}
+              to="/cart"
+              sx={{
+                color: "#388E3C",
+                fontWeight: "bold",
+                textTransform: "none",
+                "&:hover": { backgroundColor: "#2E7D32" },
+              }}
+            >
+              Cart
             </Button>
 
             {!token && (
@@ -84,7 +118,34 @@ export const NavBar = () => {
                 </Button>
               </>
             )}
-
+            {token && (
+              <Button
+                sx={{
+                  color: "#388E3C",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  "&:hover": { backgroundColor: "#2E7D32" },
+                }}
+                component={Link}
+                to="/dashboard/user"
+              >
+                User Dashboard
+              </Button>
+            )}
+            {token && role == "Admin" && (
+              <Button
+                sx={{
+                  color: "#388E3C",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  "&:hover": { backgroundColor: "#2E7D32" },
+                }}
+                component={Link}
+                to="/dashboard/admin"
+              >
+                Admin Dashboard
+              </Button>
+            )}
             {token && (
               <>
                 <Button
@@ -99,6 +160,7 @@ export const NavBar = () => {
                 >
                   Profile
                 </Button>
+
                 <Button
                   onClick={handleLogout}
                   sx={{
@@ -112,93 +174,8 @@ export const NavBar = () => {
                 </Button>
               </>
             )}
-
-            {token && role === "Admin" && (
-              <>
-                <Button
-                  component={Link}
-                  to="/dashboard/admin/addProduct"
-                  sx={{
-                    color: "#388E3C",
-                    fontWeight: "bold",
-                    textTransform: "none",
-                    "&:hover": { backgroundColor: "#2E7D32" },
-                  }}
-                >
-                  Add Product
-                </Button>
-                <Button
-                  component={Link}
-                  to="/dashboard/admin/productsAdminList"
-                  sx={{
-                    color: "#388E3C",
-                    fontWeight: "bold",
-                    textTransform: "none",
-                    "&:hover": { backgroundColor: "#2E7D32" },
-                  }}
-                >
-                  Products Admin List
-                </Button>
-                <Button
-                  component={Link}
-                  to="/dashboard/admin/addCategory"
-                  sx={{
-                    color: "#388E3C",
-                    fontWeight: "bold",
-                    textTransform: "none",
-                    "&:hover": { backgroundColor: "#2E7D32" },
-                  }}
-                >
-                  Add Category
-                </Button>
-                <Button
-                  component={Link}
-                  to="/dashboard/admin/categoryList"
-                  sx={{
-                    color: "#388E3C",
-                    fontWeight: "bold",
-                    textTransform: "none",
-                    "&:hover": { backgroundColor: "#2E7D32" },
-                  }}
-                >
-                  Category List
-                </Button>
-
-                <Button
-                  component={Link}
-                  to="/dashboard/admin/users"
-                  sx={{
-                    color: "#388E3C",
-                    fontWeight: "bold",
-                    textTransform: "none",
-                    "&:hover": { backgroundColor: "#2E7D32" },
-                  }}
-                >
-                  users List
-                </Button>
-
-              </>
-            )
-            
-            }
-
-            {token && role === "Customer" && (
-              <Button
-                component={Link}
-                to="/dashboard/customer/cart"
-                sx={{
-                  color: "#388E3C",
-                  fontWeight: "bold",
-                  textTransform: "none",
-                  "&:hover": { backgroundColor: "#2E7D32" },
-                }}
-              >
-                Cart
-              </Button>
-            )}
           </Box>
 
-          {/* Optional Mobile Menu Icon */}
           <IconButton
             sx={{ display: { xs: "block", sm: "none" } }}
             color="inherit"

@@ -7,17 +7,8 @@ import { ProductContext } from "../../Context/ProductContext";
 
 export const Product = ({ product }) => {
   const { addToCart } = useCart();
-  const {  refreshProducts } = useContext(ProductContext);
 
-  const handleDelete = async () => {
-    try {
-      await deleteProductById(product.productId);
-      console.log("Product deleted:", product.productId);
-      refreshProducts();
-    } catch (error) {
-      console.error("Error deleting product:", error);
-    }
-  };
+
 
 
   return (
@@ -72,36 +63,6 @@ export const Product = ({ product }) => {
         >
           Add To Cart
         </Button>
-        <Link
-        
-            to={`/updateProduct/${product.productId}`}
-            className="btn btn-outline-warning"
-            style={{
-              display: "block",
-              textAlign: "center",
-              marginTop: "8px",
-              padding: "8px 16px",
-              backgroundColor: "#FFC107",
-              color: "#ffffff",
-              borderRadius: "4px",
-              fontWeight: "normal",
-              textDecoration: "none",
-              transition: "background-color 0.3s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = "#FFA000";
-
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = "#FFC107";
-              console.log('@@Product ID:', product.productId);
-
-            }}
-          >
-            Edit Product
-          </Link>
-
-        {/* Show Details Button */}
         <div style={{ marginTop: "8px" }}>
           <Link
             to={`/product/${product.productId}`}
@@ -128,21 +89,7 @@ export const Product = ({ product }) => {
           >
             Show Details
           </Link>
-          <Button
-          variant="outlined"
-          color="error"
-          fullWidth
-          sx={{
-            marginTop: 2,
-            "&:hover": {
-              backgroundColor: "#f44336",
-              color: "white",
-            },
-          }}
-          onClick={handleDelete}
-        >
-          Delete Product
-        </Button>
+          
         </div>
       </CardContent>
     </Card>

@@ -15,12 +15,14 @@ import { Home } from "../pages/Customer/Home";
 import { Cart } from "../components/Cart/Cart";
 import { AddCategory } from "../pages/Admin/AddCategory";
 import { CategoryList } from "../pages/Admin/CategoryList";
-import { AdminDashboard } from "./ProtectRoutes/AdminDashboard";
+import { AdminProtect } from "./ProtectRoutes/AdminProtect";
 import { ProductsAdminList } from "../pages/Admin/ProductsAdminList";
 import { UpdateProduct } from "../pages/Admin/UpdateProduct";
-// import { UsersList } from "../pages/Admin/UsersList";
-import { Users } from "../components/Users/Users";
 import { UsersList } from "../pages/Admin/UsersList";
+import { ProtectRoute } from "./ProtectRoutes/ProtectRoute";
+import { UserDashboard } from "../pages/Customer/UserDashboard";
+import { AdminDashboard } from "../pages/Admin/AdminDashboard";
+import { AdminProductsList } from "../pages/Admin/ProductsList/AdminProductsList";
 
 export const router = createBrowserRouter([
   {
@@ -44,53 +46,77 @@ export const router = createBrowserRouter([
         path: "/signUp",
         element: <SignUp />,
       },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
+
       {
         path: "/productsList",
         element: <ProductsList />,
       },
       {
-        path: "/updateProduct/:productId",
-        element: <UpdateProduct />,
+        path: "cart",
+        element: <Cart />,
       },
+      
       {
-        path: "/dashboard/admin",
-        element: <AdminDashboard />,
+        path: "/dashboard/user",
+        element: <ProtectRoute />,
         children: [
           {
-            path: "productsAdminList",
-            element: <ProductsAdminList />,
+            path: "",
+            element: <UserDashboard />,
+            children: [
+              {
+                index: true,
+                element: <Profile />,
+              },
+              {
+                path: "profile",
+                element: <Profile />,
+              },
+            ],
+          },
+        ],
+      },
+
+      {
+        path: "/dashboard/admin",
+        element: <AdminProtect />,
+        children: [
+          {
+            path: "",
+            element: <AdminDashboard />,
+            children: [
+              {
+                index: true,
+                element: <UsersList />,
+              },
+              {
+                path: "users",
+                element: <UsersList />,
+              },
+              {
+                path: "products",
+                element: <AdminProductsList />,
+              },
+              {
+                path: "categories",
+                element: <CategoryList />,
+              },
+            ],  
+          },
+          {
+            path: "updateProduct/:productId",
+            element: <UpdateProduct />,
           },
           {
             path: "addProduct",
             element: <AddProduct />,
-          },
-          {
-            path: "categoryList",
-            element: <CategoryList />,
+
           },
           {
             path: "addCategory",
             element: <AddCategory />,
           },
-          ,
-          {
-            path: "users",
-            element: <UsersList />,
-          },
-        ],
-      },
-      {
-        path: "/dashboard/customer",
-        element: <CustomerDashboard />,
-        children: [
-          {
-            path: "cart",
-            element: <Cart />,
-          },
+
         ],
       },
     ],

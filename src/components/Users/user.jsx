@@ -1,5 +1,7 @@
 import React, { useContext }  from "react";
-import { Button, Card, CardContent, Typography } from "@mui/material";
+import {  Card, CardContent, Typography } from "@mui/material";
+import { Button, TableCell, TableRow } from "@mui/material";
+
 import { UsersContext } from "../../Context/UserContext";
 import { deleteUserById } from "../../Services/userService";
 
@@ -7,7 +9,10 @@ import { deleteUserById } from "../../Services/userService";
 export const User = ({ user }) => {
   const {  refreshUsers} = useContext(UsersContext);
 
-
+var role ="Customer";
+if(user.role == 0){
+  role ="Admin";
+}
 
   const handleDelete = async () => {
     try {
@@ -21,73 +26,50 @@ export const User = ({ user }) => {
 
 
   return (
-    <Card
+    <TableRow
       sx={{
-        maxWidth: 345,
-        boxShadow: 4,
-        marginBottom: 2,
-        borderRadius: 2,
-        backgroundColor: "#E8F5E9", // Light green for eco-friendly look
+        "&:hover": {
+          backgroundColor: "#f1f8e9", // Light green hover effect
+        },
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          position: "relative", // Needed to position the frame inside the div
-        }}
-      >
+      <TableCell>
         <img
           src={user.image}
           alt={user.userName}
           style={{
-            width: "100%", // Takes the full width of the parent div
-            height: "auto", // Maintain the image aspect ratio
-            borderRadius: "12px", // Soft corners for the image
-            border: "4px solid #A5D6A7", // Green border framing the image
-            boxSizing: "border-box", // Ensures the border is part of the total size of the image
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            border: "2px solid #81C784", // Light green border
           }}
         />
-      </div>
-      <CardContent>
-        <Typography variant="h6" component="div" color="text.primary">
-        userName: {user.userName}
-        </Typography>
-
-        <Typography variant="h6" component="div" color="text.primary">
-        role: {user.role}
-        </Typography>
-
-        <Typography variant="h6" component="div" color="text.primary">
-        email: {user.email}
-        </Typography>
-
-        <Typography variant="h6" component="div" color="text.primary">
-        createdAt: {user.createdAt}
-        </Typography>
-        
-        <Typography variant="h6" component="div" color="text.primary">
-        phone: {user.phone}
-        </Typography>
-
+      </TableCell>
+      <TableCell>{user.userName}</TableCell>
+      <TableCell>{role}</TableCell>
+      <TableCell>{user.email}</TableCell>
+      <TableCell>{user.createdAt}</TableCell>
+      <TableCell>{user.phone}</TableCell>
+      <TableCell>
         <Button
           variant="outlined"
           color="error"
-          fullWidth
+          onClick={handleDelete}
           sx={{
-            marginTop: 2,
             "&:hover": {
-              backgroundColor: "#f44336",
+              backgroundColor: "#d32f2f", // Red on hover
               color: "white",
             },
+            padding: "6px 12px",
+            fontSize: "0.875rem",
+            textTransform: "none",
+            borderRadius: "20px", // Rounded button
+            borderColor: "#81C784", // Light green border color
           }}
-          onClick={handleDelete}
         >
-          Delete USer
+          Delete
         </Button>
-
-      </CardContent>
-    </Card>
+      </TableCell>
+    </TableRow>
   );
 };

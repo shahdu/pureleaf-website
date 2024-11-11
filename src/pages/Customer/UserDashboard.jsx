@@ -1,16 +1,16 @@
 import React from 'react';
 import { Container, Typography, Box } from '@mui/material';
-import Grid from '@mui/material/Grid2';
 import { Outlet } from 'react-router-dom';
-  
-import { AdminSidebar } from './AdminSidebar';
 
- export const AdminDashboard = () => {
+import { UserSidebar } from './UserSidebar';
+
+export const UserDashboard = () => {
   return (
     <Box display="flex">
-      <AdminSidebar />
+      <UserSidebar />
       <Container>
         <Typography variant="h4" gutterBottom>
+          
         </Typography>
         <Box sx={{ mt: 4 }}>
           <Outlet />

@@ -8,7 +8,6 @@ import { SortCom } from "../../components/SortCom";
 export const ProductsList = () => {
   return (
     <div>
-      Products List
       <SearchInput />
       <SortCom />
       <Products />

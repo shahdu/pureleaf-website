@@ -1,8 +1,15 @@
-import React from 'react';
+import React from 'react'; 
 import { Typography, Container, Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/Images/PureLeaf.jpg'; // Adjust the path to your logo
 
 export const Home = () => {
+  const navigate = useNavigate();
+
+  const handleStartShopping = () => {
+    navigate('/productsList');
+  };
+
   return (
     <Box
       className="home-page"
@@ -57,6 +64,7 @@ export const Home = () => {
           <Button
             variant="contained"
             color="success"
+            onClick={handleStartShopping} // Navigate on click
             sx={{
               fontWeight: 'bold',
               borderRadius: '30px',

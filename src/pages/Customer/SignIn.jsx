@@ -44,7 +44,7 @@ export const SignIn = () => {
 //         const decoded = decodeToken(token);
 //  console.log(decoded);
 
-        navigate("/profile"); // Redirect to homepage
+        navigate("/dashboard/user/profile"); // Redirect to homepage
       } else {
         setError("Email/Password is incorrect");
       }

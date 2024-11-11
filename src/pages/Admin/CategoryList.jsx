@@ -1,29 +1,57 @@
-// components/CategoryList.js
 import React, { useContext } from 'react';
 import { CategoryContext } from '../../Context/CategoryContext';
-  
+import { useNavigate } from 'react-router-dom';
+import { Button, CircularProgress, Alert, Box, Typography, List, ListItem } from '@mui/material';
+
 export const CategoryList = () => {
   const { categories, loading, error } = useContext(CategoryContext);
+  const navigate = useNavigate();
 
-  if (loading) {
-    return <div>Loading categories...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+  const handleAddCategory = () => {
+    navigate('/dashboard/admin/addCategory');
+  };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Categories</h1>
-      <ul className="list-group">
-        {categories.map((category) => (
-          <li key={category.categoryId} className="list-group-item">
-            {category.categoryName}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Box className="container mt-5" sx={{ maxWidth: 600, margin: 'auto', textAlign: 'center' }}>
+      <Typography variant="h4" fontWeight="bold" gutterBottom>
+        Categories
+      </Typography>
+
+      {loading ? (
+        <CircularProgress color="primary" />
+      ) : error ? (
+        <Alert severity="error">{error}</Alert>
+      ) : (
+        <List sx={{ mt: 2, borderRadius: 1, boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)' }}>
+          {categories.map((category) => (
+            <ListItem
+              key={category.categoryId}
+              sx={{
+                backgroundColor: '#f5f5f5',
+                borderBottom: '1px solid #ddd',
+                padding: 2,
+                '&:last-child': { borderBottom: 'none' },
+                '&:hover': { backgroundColor: '#e0e0e0' },
+              }}
+            >
+              {category.categoryName}
+            </ListItem>
+          ))}
+        </List>
+      )}
+
+      <Button
+        variant="contained"
+        onClick={handleAddCategory}
+        sx={{
+          mt: 3,
+          backgroundColor: '#2e7d32',
+          color: '#fff',
+          '&:hover': { backgroundColor: '#1b5e20' },
+        }}
+      >
+        Add Category
+      </Button>
+    </Box>
   );
 };
-

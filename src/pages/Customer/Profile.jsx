@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { decodeToken } from "../../Utilities/TokenDecode";
 import { getUserById, updateUser } from "../../Services/userService";
+import { Container, Box, Typography, TextField, Button, Avatar, Alert, CircularProgress } from "@mui/material";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -18,17 +19,13 @@ export const Profile = () => {
 
   if (!token) {
     navigate("/signIn");
-    return;
+    return null;
   }
 
   const decoded = decodeToken(token);
   const userId = decoded?.nameid;
-  
+
   useEffect(() => {
-
-  
-    console.log(userId);
-
     if (userId) {
       getUserById(userId)
         .then((response) => {
@@ -49,7 +46,7 @@ export const Profile = () => {
           setError("Error fetching user data.");
         });
     }
-  }, [navigate]);
+  }, [navigate, userId]);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -59,7 +56,6 @@ export const Profile = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
 
   const handleSave = async () => {
     try {
@@ -77,87 +73,108 @@ export const Profile = () => {
   };
 
   if (!userInfo) {
-    return <p>Loading...</p>;
+    return <CircularProgress color="success" />;
   }
 
   const role = userInfo.role === 0 ? "Admin" : "Customer";
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">User Profile</h1>
-      <div className="p-4 border rounded shadow-sm">
-        {error ? (
-          <p className="text-danger">{error}</p>
+    <Container maxWidth="sm" sx={{ mt: 5 }}>
+      <Box
+        sx={{
+          backgroundColor: "#f5f5f5",
+          padding: 4,
+          borderRadius: 2,
+          boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+          textAlign: "center",
+          border: "1px solid #d1e7dd",
+        }}
+      >
+        <Typography variant="h4" fontWeight="bold" gutterBottom color="#388e3c">
+          User Profile
+        </Typography>
+        {error && <Alert severity="error">{error}</Alert>}
+        
+        {isEditing ? (
+          <>
+            <TextField
+              label="Username"
+              name="userName"
+              value={formData.userName}
+              onChange={handleInputChange}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              sx={{ backgroundColor: "#e0f2f1" }}
+            />
+            <TextField
+              label="Email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              sx={{ backgroundColor: "#e0f2f1" }}
+            />
+            <TextField
+              label="Phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              sx={{ backgroundColor: "#e0f2f1" }}
+            />
+            <TextField
+              label="Profile Image URL"
+              name="image"
+              value={formData.image}
+              onChange={handleInputChange}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              sx={{ backgroundColor: "#e0f2f1" }}
+            />
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+              <Button variant="contained" color="success" onClick={handleSave} sx={{ mr: 2 }}>
+                Save
+              </Button>
+              <Button variant="outlined" color="inherit" onClick={handleEditToggle}>
+                Cancel
+              </Button>
+            </Box>
+          </>
         ) : (
           <>
-            {isEditing ? (
-              <>
-                <div>
-                  <label>Username:</label>
-                  <input
-                    type="text"
-                    name="userName"
-                    value={formData.userName}
-                    onChange={handleInputChange}
-                    className="form-control"
-                  />
-                </div>
-                <div>
-                  <label>Email:</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="form-control"
-                  />
-                </div>
-                <div>
-                  <label>Phone:</label>
-                  <input
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="form-control"
-                  />
-                </div>
-                <div>
-                  <label>Profile Image URL:</label>
-                  <input
-                    type="text"
-                    name="image"
-                    value={formData.image}
-                    onChange={handleInputChange}
-                    className="form-control"
-                  />
-                </div>
-                <button onClick={handleSave} className="btn btn-primary mt-3">
-                  Save
-                </button>
-                <button onClick={handleEditToggle} className="btn btn-secondary mt-3 ml-2">
-                  Cancel
-                </button>
-              </>
-            ) : (
-              <>
-                <p><strong>Username:</strong> {userInfo.userName || "N/A"}</p>
-                <p><strong>Email:</strong> {userInfo.email || "N/A"}</p>
-                <p><strong>Role:</strong> {role}</p>
-                <p><strong>Phone:</strong> {userInfo.phone || "N/A"}</p>
-                {userInfo.image && (
-                  <div>
-                    <img src={userInfo.image} alt="User profile" className="img-thumbnail" />
-                  </div>
-                )}
-                <button onClick={handleEditToggle} className="btn btn-primary mt-3">
-                  Edit
-                </button>
-              </>
+            {userInfo.image && (
+              <Avatar
+                src={userInfo.image}
+                alt="User profile"
+                sx={{ width: 100, height: 100, margin: "auto", mb: 2, border: "2px solid #388e3c" }}
+              />
             )}
+            <Typography variant="body1" sx={{ fontWeight: "bold", color: "#2e7d32" }}>
+              Username: {userInfo.userName || "N/A"}
+            </Typography>
+            <Typography variant="body1" sx={{ fontWeight: "bold", color: "#2e7d32" }}>
+              Email: {userInfo.email || "N/A"}
+            </Typography>
+            <Typography variant="body1" sx={{ fontWeight: "bold", color: "#2e7d32" }}>
+              Role: {role}
+            </Typography>
+            <Typography variant="body1" sx={{ fontWeight: "bold", color: "#2e7d32" }}>
+              Phone: {userInfo.phone || "N/A"}
+            </Typography>
+            <Box sx={{ mt: 2 }}>
+              <Button variant="contained" color="success" onClick={handleEditToggle}>
+                Edit Profile
+              </Button>
+            </Box>
           </>
         )}
-      </div>
-    </div>
+      </Box>
+    </Container>
   );
 };

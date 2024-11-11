@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { SignIn } from '../../pages/Customer/SignIn';
 
 
-export const AdminDashboard = () => {
+export const AdminProtect = () => {
     const signIn = JSON.parse(localStorage.getItem("isSignIn"));
 
     const token = localStorage.getItem("token");

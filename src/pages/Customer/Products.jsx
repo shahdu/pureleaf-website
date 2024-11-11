@@ -6,9 +6,6 @@ import { ProductContext } from "../../Context/ProductContext";
 export const Products = () => {
   const { data, isLoading, error } = useContext(ProductContext);
 
-
-
-  
   if (isLoading) {
     return (
       <div className="text-center mt-4">
@@ -16,6 +13,7 @@ export const Products = () => {
       </div>
     );
   }
+  
   if (error) {
     return (
       <div className="text-center mt-4">
