@@ -13,9 +13,8 @@ export const ProductProvider = ({ children }) => {
   const [totalPages, setTotalPages] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  // const [sortBy, setSortBy] = useState("ProductName");
   const [sortOrder, setSortOrder] = useState("asc");
-
+  const [sortBy, setSortBy] = useState("CreatedAt");
 
   const fetchProducts = async () => {
     setIsLoading(true);
@@ -24,9 +23,11 @@ export const ProductProvider = ({ children }) => {
         searchValue,
         pageNumber,
         pageSize,
-        sortOrder
+        sortOrder,
+        sortBy
       );
-      console.log("searchValue:", searchValue);
+      console.log("sortOrder:", sortOrder);
+      console.log("sortBy:", sortBy);
       console.log("API response:", response);
 
       setData(response.data.items);
@@ -43,7 +44,7 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
 
     fetchProducts();
-  }, [searchValue,pageNumber,sortOrder]);
+  }, [searchValue,pageNumber,sortOrder,sortBy]);
 
  
 
@@ -60,11 +61,13 @@ export const ProductProvider = ({ children }) => {
         setPageNumber,
         pageSize,
         setPageSize,
-        sortOrder,
-        setSortOrder,
         totalPages,
         fetchProducts,
         refreshProducts,
+        sortBy,
+        setSortBy,
+        sortOrder,
+        setSortOrder,
       }}
     >
       {children}

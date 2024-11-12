@@ -5,7 +5,8 @@ export const getAllProducts = async (
   searchValue = "",
   pageNumber = 1,
   pageSize = 3,
-  sortOrder = "asc"
+  sortOrder = "asc",
+  sortBy = "CreatedAt" 
 ) => {
   const params = new URLSearchParams();
 
@@ -17,6 +18,9 @@ export const getAllProducts = async (
   }
   if (sortOrder) {
     params.append("sortOrder", sortOrder);
+  }
+  if (sortBy) {
+    params.append("sortBy", sortBy);
   }
 
   const url = `${baseURL}?${params.toString()}`;

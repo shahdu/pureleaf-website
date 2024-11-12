@@ -11,6 +11,8 @@ export const SignUp = () => {
     name: "",
     email: "",
     password: "",
+    phone: "", 
+    image: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -21,14 +23,15 @@ export const SignUp = () => {
     }));
   };
 
+
   const validDataInput = () => {
     const newError = {};
     if (!user.name.trim() || user.name.length < 2) {
       newError.name = "Name must be at least 2 characters";
     }
-    if (!/^[a-zA-Z\s]+$/.test(user.name)) {
-      newError.name = "Only characters are allowed";
-    }
+    // if (!/^[a-zA-Z\s]+$/.test(user.name)) {
+    //   newError.name = "Only characters are allowed";
+    // }
     if (!user.email.trim()) {
       newError.email = "Email is required";
     } else if (
@@ -50,6 +53,13 @@ export const SignUp = () => {
       newError.password =
         "Password must contain at least one special character (e.g., !@#$%^&*)";
     }
+
+    if (!user.phone.trim()) {
+      newError.phone = "Phone number is required";
+    } else if (!/^\d{10}$/.test(user.phone)) {
+      newError.phone = "Phone number must be exactly 10 digits";
+    }
+
     setErrors(newError);
     return Object.keys(newError).length === 0; // return true if no error
   };
@@ -58,9 +68,15 @@ export const SignUp = () => {
     event.preventDefault();
     if (validDataInput()) {
       try {
+        const registerResponse = await registerUser(
+          user.name,
+          user.password,
+          user.email,
+          user.phone, 
+          user.image,// Add phone to registration
+        );
 
          // Register the user
-         const registerResponse = await registerUser(user.name, user.password, user.email);
          console.log("Registration response:", registerResponse);
  
          // After registration, automatically log in the user
@@ -71,7 +87,7 @@ export const SignUp = () => {
            localStorage.setItem("token", loginResponse.token);
            localStorage.setItem("isSignIn", true);
  
-           navigate("/profile");
+           navigate("/dashboard/user/profile");
          } else {
            setErrors({ ...errors, server: "Login failed after registration." });
          }
@@ -136,6 +152,36 @@ export const SignUp = () => {
           />
           {errors.password && <p className="text-danger">{errors.password}</p>}
         </div>
+        <div className="mb-3">
+          <label htmlFor="phone" className="form-label">
+            Phone Number:
+          </label>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            value={user.phone}
+            onChange={handleChange}
+            required
+            className="form-control"
+          />
+          {errors.phone && <p className="text-danger">{errors.phone}</p>}
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="image" className="form-label">
+            Profile Image (Optional):
+          </label>
+          <input
+            type="text"
+            name="image"
+            id="image"
+            onChange={handleChange}
+            accept="image/*"
+            className="form-control"
+          />
+        </div>
+
 
         {errors.server && <p className="text-danger">{errors.server}</p>}
 

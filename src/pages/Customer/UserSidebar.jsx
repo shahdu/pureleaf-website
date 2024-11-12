@@ -36,12 +36,6 @@ export const UserSidebar = () => {
           </ListItemIcon>
           <ListItemText primary="Profile" />
         </ListItemButton>
-        <ListItemButton component={Link} to="orders">
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Orders" />
-        </ListItemButton>
       </List>
     </Box>
   );

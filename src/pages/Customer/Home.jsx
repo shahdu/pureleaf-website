@@ -41,7 +41,7 @@ export const Home = () => {
 
         {/* Welcome Section */}
         <Box textAlign="center" mb={4}>
-          <Typography variant="h3" component="h1" sx={{ color: '#4caf50', fontWeight: 'bold' }}>
+          <Typography variant="h3" component="h1" sx={{ color: '#2E7D32', fontWeight: 'bold' }}>
             Welcome to PureLeaf
           </Typography>
         </Box>

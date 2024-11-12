@@ -11,10 +11,14 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../../assets/Images/PureLeaf.jpg";
+import { useCart } from "../../../hooks/useCart";
 
 export const NavBar = () => {
   const navigate = useNavigate();
+  const {  clearCart } = useCart();
+
   const token = localStorage.getItem("token");
+
 
   const decodedToken = token ? JSON.parse(atob(token.split(".")[1])) : null;
   const role = decodedToken ? decodedToken.role : null;
@@ -22,6 +26,7 @@ export const NavBar = () => {
   const handleLogout = () => {
     localStorage.removeItem("isSignIn");
     localStorage.removeItem("token");
+    clearCart();
     setTimeout(() => navigate("/signIn"), 100);
   };
 
@@ -148,18 +153,6 @@ export const NavBar = () => {
             )}
             {token && (
               <>
-                <Button
-                  component={Link}
-                  to="/profile"
-                  sx={{
-                    color: "#388E3C",
-                    fontWeight: "bold",
-                    textTransform: "none",
-                    "&:hover": { backgroundColor: "#2E7D32" },
-                  }}
-                >
-                  Profile
-                </Button>
 
                 <Button
                   onClick={handleLogout}

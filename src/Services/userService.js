@@ -69,12 +69,14 @@ export const updateUser = async (userId, updatedData) => {
 };
 
 //register
-export const registerUser = async (userName, password, email) => {
+export const registerUser = async (userName, password, email ,phone,image) => {
   try {
     const payload = {
       UserName: userName,
       Password: password,
       Email: email,
+      Phone: phone,
+      Image: image,
     };
 
     const response = await axios.post(

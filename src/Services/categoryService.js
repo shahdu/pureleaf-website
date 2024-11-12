@@ -9,7 +9,31 @@ export const getAllCategories = async () => {
 };
 
 // Add a new category
+
 export const addCategory = async (categoryName) => {
-  const response = await axios.post(baseURL, { categoryName });
-  return response.data;
+  const token = localStorage.getItem("token");
+  console.log(token);
+  if (!token) {
+    throw new Error("User not authenticated");
+  }
+
+  try {
+    const decodedToken = token ? JSON.parse(atob(token.split(".")[1])) : null;
+    const role = decodedToken ? decodedToken.role : null;
+    if (role === "Admin") {
+      const response = await axios.post(
+        baseURL,
+        { categoryName },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      return response.data;
+    } else {
+      throw new Error("Unauthorized: Only Admins can add categories");
+    }
+  } catch (error) {
+    console.error("Error adding category:", error);
+    throw error;
+  }
 };
