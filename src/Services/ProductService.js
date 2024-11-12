@@ -1,12 +1,14 @@
 import axios from "axios";
 const baseURL = "http://localhost:5000/api/products";
 
+const token = localStorage.getItem("token");
+
 export const getAllProducts = async (
   searchValue = "",
   pageNumber = 1,
   pageSize = 3,
   sortOrder = "asc",
-  sortBy = "CreatedAt" 
+  sortBy = "CreatedAt"
 ) => {
   const params = new URLSearchParams();
 
@@ -32,18 +34,22 @@ export const getAllProducts = async (
 
 // Add a new product
 export const addProduct = async (productData) => {
+
   try {
-    const response = await axios.post(baseURL, productData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    return response.data;
+      const response = await axios.post(baseURL, productData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    
   } catch (error) {
     console.error("Error adding product:", error);
     throw error;
   }
 };
+
 export const getProductById = async (productId) => {
   try {
     const response = await axios(`${baseURL}/${productId}`);
@@ -51,15 +57,19 @@ export const getProductById = async (productId) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching products:", error);
-    return []; 
+    return [];
   }
 };
 
 export const deleteProductById = async (productId) => {
+
   try {
-    const response = await axios.delete(`${baseURL}/${productId}`);
-    console.log("deleted product:", response.data);  
-    return response.data;  
+      const response = await axios.delete(`${baseURL}/${productId}`, {
+        Authorization: `Bearer ${token}`,
+      });
+      console.log("deleted product:", response.data);
+      return response.data;
+   
   } catch (error) {
     console.error("Error fetching product by ID:", error);
     throw error;
@@ -68,25 +78,19 @@ export const deleteProductById = async (productId) => {
 
 // Update an existing product
 export const updateProduct = async (productId, updatedData) => {
+
   try {
-    const response = await axios.put(`${baseURL}/${productId}`, updatedData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    console.log(response.data);
-    return response.data;
+      const response = await axios.put(`${baseURL}/${productId}`, updatedData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data);
+      return response.data;
+   
   } catch (error) {
     console.error("Error updating product:", error);
     throw error;
   }
 };
-
-
-
-
-
-
-
-
-   

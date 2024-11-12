@@ -9,7 +9,7 @@ export const Product = ({ product }) => {
   const { addToCart } = useCart();
 
 
-
+// console.log("test%&*"+product.category.categoryId);
 
   return (
     <Card

@@ -1,18 +1,17 @@
-import React, { useContext }  from "react";
-import {  Card, CardContent, Typography } from "@mui/material";
+import React, { useContext } from "react";
+import { Card, CardContent, Typography } from "@mui/material";
 import { Button, TableCell, TableRow } from "@mui/material";
 
 import { UsersContext } from "../../Context/UserContext";
 import { deleteUserById } from "../../Services/userService";
 
-
 export const User = ({ user }) => {
-  const {  refreshUsers} = useContext(UsersContext);
+  const { refreshUsers } = useContext(UsersContext);
 
-var role ="Customer";
-if(user.role == 0){
-  role ="Admin";
-}
+  var role = "Customer";
+  if (user.role == 0) {
+    role = "Admin";
+  }
 
   const handleDelete = async () => {
     try {
@@ -23,7 +22,6 @@ if(user.role == 0){
       console.error("Error deleting user:", error);
     }
   };
-
 
   return (
     <TableRow

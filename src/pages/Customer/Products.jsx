@@ -2,9 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Product } from "../../components/products/Product"; 
 import { ProductContext } from "../../Context/ProductContext";
+import { CategoryContext } from "../../Context/CategoryContext";
 
 export const Products = () => {
   const { data, isLoading, error } = useContext(ProductContext);
+  const { selectedCategoryId } = useContext(CategoryContext);
+  console.log("Selected category@:", selectedCategoryId);
 
   if (isLoading) {
     return (
@@ -21,6 +24,9 @@ export const Products = () => {
       </div>
     );
   }
+  const filteredProducts = selectedCategoryId
+  ? data.filter((product) => product.category.categoryId === selectedCategoryId)
+  : data; 
 
   return (
     <>
@@ -29,8 +35,8 @@ export const Products = () => {
           Products
         </h2>
         <div className="row">
-          {data && data.length > 0 ? (
-            data.map((product) => (
+          {filteredProducts && filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
               <div key={product.productId} className="col-md-4 mb-4">
                 <Product product={product} />
               </div>
