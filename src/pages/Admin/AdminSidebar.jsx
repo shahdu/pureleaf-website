@@ -50,6 +50,12 @@ export const AdminSidebar = () => {
           </ListItemIcon>
           <ListItemText primary="products" />
         </ListItemButton>
+        <ListItemButton component={Link} to="DataAnalytics">
+          <ListItemIcon>
+            <ShoppingCartIcon />
+          </ListItemIcon>
+          <ListItemText primary="DataAnalytics" />
+        </ListItemButton>
       </List>
     </Box>
   );

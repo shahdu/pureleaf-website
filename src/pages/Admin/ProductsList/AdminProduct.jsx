@@ -19,6 +19,18 @@ export const AdminProduct = ({ product }) => {
     }
   };
 
+  // Format the createdAt date to a more user-friendly format
+  const formattedDate = new Date(product.createdAt).toLocaleString("en-US", {
+    weekday: "short", // Abbreviated day of the week
+    year: "numeric",  // Full year
+    month: "short",   // Abbreviated month
+    day: "numeric",   // Day of the month
+    hour: "numeric",  // Hour in 12-hour format
+    minute: "numeric", // Minute
+    second: "numeric", // Second
+    hour12: true,     // Use 12-hour clock
+  });
+
   return (
     <TableRow
       sx={{
@@ -42,10 +54,12 @@ export const AdminProduct = ({ product }) => {
       <TableCell>{product.productName}</TableCell>
       <TableCell>{product.price.toFixed(2)}</TableCell>
       <TableCell>{product.description}</TableCell>
-      <TableCell>{product.createdAt}</TableCell>
+      <TableCell>
+        {/* Make sure the date stays in one line */}
+        <span style={{ whiteSpace: "nowrap" }}>{formattedDate}</span>
+      </TableCell>
       <TableCell>
         <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
-          {/* Edit icon with gray color */}
           <Link
             to={`/dashboard/admin/updateProduct/${product.productId}`}
             style={{
@@ -61,7 +75,6 @@ export const AdminProduct = ({ product }) => {
               <EditIcon />
             </IconButton>
           </Link>
-          {/* Delete icon */}
           <IconButton color="error" onClick={handleDelete}>
             <DeleteIcon />
           </IconButton>

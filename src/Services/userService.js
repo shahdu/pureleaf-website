@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const User_URL = "http://localhost:5000/api/v1/users";
+const User_URL = "https://ecommerce-backend-uod8.onrender.com/api/v1/users";
 
 const token = localStorage.getItem("token");
 

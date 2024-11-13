@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:5000/api/categories";
+const baseURL = "https://ecommerce-backend-uod8.onrender.com/api/categories";
 const token = localStorage.getItem("token");
 const decodedToken = token ? JSON.parse(atob(token.split(".")[1])) : null;
 const role = decodedToken ? decodedToken.role : null;

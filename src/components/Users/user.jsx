@@ -23,6 +23,18 @@ export const User = ({ user }) => {
     }
   };
 
+  // Format the createdAt date to a more user-friendly format
+  const formattedDate = new Date(user.createdAt).toLocaleString("en-US", {
+    weekday: "short", // Abbreviated day of the week
+    year: "numeric",  // Full year
+    month: "short",   // Abbreviated month
+    day: "numeric",   // Day of the month
+    hour: "numeric",  // Hour in 12-hour format
+    minute: "numeric", // Minute
+    second: "numeric", // Second
+    hour12: true,     // Use 12-hour clock
+  });
+
   return (
     <TableRow
       sx={{
@@ -46,7 +58,10 @@ export const User = ({ user }) => {
       <TableCell>{user.userName}</TableCell>
       <TableCell>{role}</TableCell>
       <TableCell>{user.email}</TableCell>
-      <TableCell>{user.createdAt}</TableCell>
+      <TableCell>
+        {/* Ensure the date stays in one line */}
+        <span style={{ whiteSpace: "nowrap" }}>{formattedDate}</span>
+      </TableCell>
       <TableCell>{user.phone}</TableCell>
       <TableCell>
         <Button

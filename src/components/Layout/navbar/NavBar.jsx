@@ -66,7 +66,7 @@ export const NavBar = () => {
                 color: "#388E3C", 
                 fontWeight: "bold",
                 textTransform: "none",
-                "&:hover": { backgroundColor: "#2E7D32" },
+                "&:hover": { backgroundColor: "#b3d3a1" },
               }}
             >
               Home
@@ -78,7 +78,7 @@ export const NavBar = () => {
                 color: "#388E3C",
                 fontWeight: "bold",
                 textTransform: "none",
-                "&:hover": { backgroundColor: "#2E7D32" },
+                "&:hover": { backgroundColor: "#b3d3a1" },
               }}
             >
               Products
@@ -90,7 +90,7 @@ export const NavBar = () => {
                 color: "#388E3C",
                 fontWeight: "bold",
                 textTransform: "none",
-                "&:hover": { backgroundColor: "#2E7D32" },
+                "&:hover": { backgroundColor: "#b3d3a1" },
               }}
               
             >
@@ -107,7 +107,7 @@ export const NavBar = () => {
                     color: "#388E3C",
                     fontWeight: "bold",
                     textTransform: "none",
-                    "&:hover": { backgroundColor: "#2E7D32" },
+                    "&:hover": { backgroundColor: "#b3d3a1" },
                   }}
                 >
                   Sign In
@@ -119,7 +119,7 @@ export const NavBar = () => {
                     color: "#388E3C",
                     fontWeight: "bold",
                     textTransform: "none",
-                    "&:hover": { backgroundColor: "#2E7D32" },
+                    "&:hover": { backgroundColor: "#b3d3a1" },
                   }}
                 >
                   Sign Up
@@ -132,7 +132,7 @@ export const NavBar = () => {
                   color: "#388E3C",
                   fontWeight: "bold",
                   textTransform: "none",
-                  "&:hover": { backgroundColor: "#2E7D32" },
+                  "&:hover": { backgroundColor: "#b3d3a1" },
                 }}
                 component={Link}
                 to="/dashboard/user"
@@ -146,7 +146,7 @@ export const NavBar = () => {
                   color: "#388E3C",
                   fontWeight: "bold",
                   textTransform: "none",
-                  "&:hover": { backgroundColor: "#2E7D32" },
+                  "&:hover": { backgroundColor: "#b3d3a1" },
                 }}
                 component={Link}
                 to="/dashboard/admin"
@@ -163,7 +163,7 @@ export const NavBar = () => {
                     color: "#388E3C",
                     fontWeight: "bold",
                     textTransform: "none",
-                    "&:hover": { backgroundColor: "#2E7D32" },
+                    "&:hover": { backgroundColor: "#b3d3a1" },
                   }}
                 >
                   Sign Out

@@ -43,7 +43,7 @@ export const Categories = () => {
           <TableHead>
             <TableRow sx={{ backgroundColor: "#81C784", color: "#fff" }}>
               <TableCell>Category Name</TableCell>
-              <TableCell>Actions</TableCell> {/* Added for the delete button */}
+              <TableCell align="center">Actions</TableCell> {/* Align 'Actions' header to the center */}
             </TableRow>
           </TableHead>
           <TableBody>

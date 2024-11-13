@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURL = "http://localhost:5000/api/products";
+const baseURL = "https://ecommerce-backend-uod8.onrender.com/api/products";
 
 const token = localStorage.getItem("token");
 

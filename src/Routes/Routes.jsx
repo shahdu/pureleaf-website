@@ -24,6 +24,7 @@ import { UserDashboard } from "../pages/Customer/UserDashboard";
 import { AdminDashboard } from "../pages/Admin/AdminDashboard";
 import { AdminProductsList } from "../pages/Admin/ProductsList/AdminProductsList";
 import { UpdateCategory } from "../components/Category/UpdateCategory";
+import { DataAnalytics } from "../pages/Admin/DataAnalytics";
 
 export const router = createBrowserRouter([
   {
@@ -101,6 +102,10 @@ export const router = createBrowserRouter([
               {
                 path: "categories",
                 element: <CategoryList />,
+              },
+              {
+                path: "DataAnalytics",
+                element: <DataAnalytics />,
               },
             ],
           },
