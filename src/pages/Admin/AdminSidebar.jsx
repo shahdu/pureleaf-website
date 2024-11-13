@@ -49,7 +49,7 @@ export const AdminSidebar = () => {
           <ListItemIcon>
             <ShoppingCartIcon />
           </ListItemIcon>
-          <ListItemText primary="products" />
+          <ListItemText primary="Products" />
         </ListItemButton>
         <ListItemButton component={Link} to="DataAnalytics">
           <ListItemIcon>
