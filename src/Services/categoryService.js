@@ -21,9 +21,7 @@ export const getAllCategories = async ( searchValue = "",
     params.append("sortOrder", sortOrder);
   }
   try {
-    const response = await axios.get(`${baseURL}?${params.toString()}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await axios.get(`${baseURL}?${params.toString()}`);
     return response.data;
   } catch (error) {
     console.error("Error adding category:", error);
@@ -69,6 +67,25 @@ export const getCategoryById = async (categoryId) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching category by ID:", error);
+    throw error;
+  }
+};
+
+// Update an existing category
+export const updateCategory = async (categoryId, updatedData) => {
+
+  try {
+      const response = await axios.put(`${baseURL}/${categoryId}`, updatedData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data);
+      return response.data;
+   
+  } catch (error) {
+    console.error("Error updating product:", error);
     throw error;
   }
 };

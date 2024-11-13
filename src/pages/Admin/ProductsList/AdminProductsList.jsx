@@ -1,8 +1,8 @@
 import React from "react";
 
-import { PaginationCom } from "../../../components/PaginationCom";
-import { SortCom } from "../../../components/SortCom";
-import { SearchInput } from "../../Customer/SearchInput";
+import { PaginationCom } from "../../../components/products/PaginationCom";
+import { SortCom } from "../../../components/products/SortCom";
+import { SearchInput } from "../../../components/products/SearchInput";
 import { AdminProducts } from "./AdminProducts";
 
 export const AdminProductsList = () => {

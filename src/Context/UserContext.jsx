@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState("");
   const [totalPages, setTotalPages] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(20);
   const [sortOrder, setSortOrder] = useState("asc");
 
   const fetchUsers = async () => {

@@ -1,7 +1,9 @@
 /* Global Styles (CSS or Styled Components) */
-html, body, #root {
-  background-color: rgb(225, 226, 221);
 
+
+html, body, #root {
+  background-color: #DCE4C9;
+  /* background-image: url('./assets/Images/backImage.jpg'); */
   height: 100%;
   margin: 0;
 }

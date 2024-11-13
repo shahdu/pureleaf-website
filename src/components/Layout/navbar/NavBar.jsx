@@ -12,6 +12,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../../assets/Images/PureLeaf.jpg";
 import { useCart } from "../../../hooks/useCart";
+import { CartIcon } from "../../Cart/CartIcon";
 
 export const NavBar = () => {
   const navigate = useNavigate();
@@ -91,8 +92,10 @@ export const NavBar = () => {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "#2E7D32" },
               }}
+              
             >
-              Cart
+              <CartIcon />
+
             </Button>
 
             {!token && (

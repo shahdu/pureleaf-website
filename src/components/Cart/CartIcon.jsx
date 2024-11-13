@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge, IconButton } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
 import { useCart } from '../../hooks/useCart';
 
 
@@ -13,7 +13,7 @@ import { useCart } from '../../hooks/useCart';
   return (
     <IconButton aria-label="cart">
       <Badge badgeContent={itemCount} color="error">
-        <ShoppingCartIcon />
+      <LocalMallIcon sx={{ color: 'green' }} />
       </Badge>
     </IconButton>
   );

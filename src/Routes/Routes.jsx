@@ -2,27 +2,28 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import { Layout } from "../components/Layout/Layout";
-import { Products } from "../pages/Customer/Products";
-import { ProductsList } from "../pages/Customer/ProductsList";
-import { ProductDetails } from "../pages/Customer/ProductDetails";
+import { Products } from "../components/products/Products";
+import { ProductsList } from "../components/products/ProductsList";
+import { ProductDetails } from "../components/products/ProductDetails";
 import Error from "../pages/Error";
 import { SignIn } from "../pages/Customer/SignIn";
 import { SignUp } from "../pages/Customer/SignUp";
 import { Profile } from "../pages/Customer/Profile";
-import { AddProduct } from "../pages/Admin/AddProduct";
+import { AddProduct } from "../components/products/AddProduct";
 import { CustomerDashboard } from "./ProtectRoutes/CustomerDashboard";
 import { Home } from "../pages/Customer/Home";
 import { Cart } from "../components/Cart/Cart";
-import { AddCategory } from "../pages/Admin/AddCategory";
-import { CategoryList } from "../pages/Admin/CategoryList";
+import { AddCategory } from "../components/Category/AddCategory";
+import { CategoryList } from "../components/Category/CategoryList";
 import { AdminProtect } from "./ProtectRoutes/AdminProtect";
-import { ProductsAdminList } from "../pages/Admin/ProductsAdminList";
-import { UpdateProduct } from "../pages/Admin/UpdateProduct";
-import { UsersList } from "../pages/Admin/UsersList";
+// import { ProductsAdminList } from "../pages/Admin/ProductsAdminList";
+import { UpdateProduct } from "../components/products/UpdateProduct";
+import { UsersList } from "../components/Users/UsersList";
 import { ProtectRoute } from "./ProtectRoutes/ProtectRoute";
 import { UserDashboard } from "../pages/Customer/UserDashboard";
 import { AdminDashboard } from "../pages/Admin/AdminDashboard";
 import { AdminProductsList } from "../pages/Admin/ProductsList/AdminProductsList";
+import { UpdateCategory } from "../components/Category/UpdateCategory";
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +56,7 @@ export const router = createBrowserRouter([
         path: "cart",
         element: <Cart />,
       },
-      
+
       {
         path: "/dashboard/user",
         element: <ProtectRoute />,
@@ -101,7 +102,7 @@ export const router = createBrowserRouter([
                 path: "categories",
                 element: <CategoryList />,
               },
-            ],  
+            ],
           },
           {
             path: "updateProduct/:productId",
@@ -110,13 +111,12 @@ export const router = createBrowserRouter([
           {
             path: "addProduct",
             element: <AddProduct />,
-
           },
           {
             path: "addCategory",
             element: <AddCategory />,
           },
-
+          { path: "updateCategory/:categoryId", element: <UpdateCategory /> },
         ],
       },
     ],
