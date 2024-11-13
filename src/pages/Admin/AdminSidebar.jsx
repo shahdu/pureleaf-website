@@ -12,6 +12,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import InsertChartIcon from '@mui/icons-material/InsertChart';
 import { Link } from 'react-router-dom';
 
 // AdminSidebar Component
@@ -52,7 +53,7 @@ export const AdminSidebar = () => {
         </ListItemButton>
         <ListItemButton component={Link} to="DataAnalytics">
           <ListItemIcon>
-            <ShoppingCartIcon />
+            <InsertChartIcon />
           </ListItemIcon>
           <ListItemText primary="DataAnalytics" />
         </ListItemButton>
