@@ -56,7 +56,7 @@
 //   );
 // };
 import React from "react";
-import { Categories } from "./categories";
+import { Categories } from "./Categories";
 import { CateSearchInput } from "./CateSearchInput";
 import { CatePagination } from "./CatePagination";
 
