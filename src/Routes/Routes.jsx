@@ -25,6 +25,7 @@ import { AdminDashboard } from "../pages/Admin/AdminDashboard";
 import { AdminProductsList } from "../pages/Admin/ProductsList/AdminProductsList";
 import { UpdateCategory } from "../components/Category/UpdateCategory";
 import { DataAnalytics } from "../pages/Admin/DataAnalytics";
+import { CreateOrder } from "../components/Order/CreateOrder";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,9 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },{
+        path: "/createOrder",
+        element: <CreateOrder />,
       },
 
       {

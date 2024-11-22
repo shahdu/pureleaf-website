@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import {
   Button,
   Card,
@@ -20,6 +22,7 @@ export const Cart = () => {
   // Track address state
   const [address, setAddress] = useState("");
   const [addressEditing, setAddressEditing] = useState(false);
+  const navigate = useNavigate();
 
   // Calculate total price
   const totalPrice = cart.reduce(
@@ -48,18 +51,7 @@ export const Cart = () => {
   };
     // Handle Order Creation
     const handleCreateOrder = async () => {
-      try {
-        const orderData = {
-          items: cart,        // The cart items
-          totalPrice,         // The total price of the order
-          address,            // The shipping address
-        };
-        const order = await createOrder(orderData);  // Pass the object to createOrder
-        console.log("Order created successfully:", order);
-        clearCart();
-      } catch (error) {
-        console.error("Failed to create order:", error);
-      }
+      navigate("/createOrder");
     };
 
   return (
