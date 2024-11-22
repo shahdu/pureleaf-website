@@ -2,11 +2,13 @@ import React, { useState, useContext } from 'react';
 import { createOrder } from '../../Services/OrderService';
 import { CartContext } from '../../Context/CartContext';
 import { decodeToken } from '../../Utilities/TokenDecode';
+import { useNavigate } from 'react-router-dom';
 
 
 export const CreateOrder = () => {
 
     const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     if (!token) {
       navigate("/signIn");
