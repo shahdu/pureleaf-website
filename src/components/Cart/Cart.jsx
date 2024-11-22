@@ -49,9 +49,13 @@ export const Cart = () => {
     // Handle Order Creation
     const handleCreateOrder = async () => {
       try {
-        const order = await createOrder(cart, totalPrice, address);
+        const orderData = {
+          items: cart,        // The cart items
+          totalPrice,         // The total price of the order
+          address,            // The shipping address
+        };
+        const order = await createOrder(orderData);  // Pass the object to createOrder
         console.log("Order created successfully:", order);
-        // Optionally, you can clear the cart after creating the order
         clearCart();
       } catch (error) {
         console.error("Failed to create order:", error);
@@ -181,7 +185,7 @@ export const Cart = () => {
                 sx={{ marginTop: 2 }}
                 onClick={handleCreateOrder}
               >
-                Create Order
+                 Order Now
               </Button>
 
               {/* Address Update Section */}
