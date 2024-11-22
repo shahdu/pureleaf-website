@@ -13,6 +13,7 @@
     // Function to save the cart to localStorage
     const saveCartToLocalStorage = (cartItems) => {
         localStorage.setItem("cart", JSON.stringify(cartItems));
+        
     };
 
     const addToCart = (product) => {
