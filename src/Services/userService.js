@@ -91,7 +91,7 @@ export const registerUser = async (userName, password, email, phone, image) => {
     };
 
     const response = await axios.post(
-      "http://localhost:5000/api/v1/auth/register",
+      "https://ecommerce-backend-uod8.onrender.com/api/v1/auth/register",
       payload,
       {
         headers: {
@@ -115,7 +115,7 @@ export const loginUser = async (email, password) => {
     };
 
     const response = await axios.post(
-      "http://localhost:5000/api/v1/auth/login",
+      "https://ecommerce-backend-uod8.onrender.com/api/v1/auth/login",
       payload,
       {
         headers: {
