@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
+import { createOrder } from '../../Services/OrderService';
 import { CartContext } from '../../Context/CartContext';
-import { createOrder } from '../../Service/OrderService';
 
 
 export const CreateOrder = () => {
-    
+
     const token = localStorage.getItem("token");
 
     if (!token) {
