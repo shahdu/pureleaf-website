@@ -45,11 +45,15 @@ export const NavBar = () => {
           }}
         >
           <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+          <Link to="/">
+
             <img
               src={logo}
               alt="Logo"
               style={{ width: "100px", height: "100px" }}
             />
+                        </Link>
+
             <Typography
               variant="h6"
               sx={{ color: "#2E7D32", fontWeight: "bold" }}
