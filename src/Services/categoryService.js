@@ -1,5 +1,5 @@
 import axios from "axios";
-
+//start deploy
 const baseURL = "https://ecommerce-backend-uod8.onrender.com/api/categories";
 const token = localStorage.getItem("token");
 const decodedToken = token ? JSON.parse(atob(token.split(".")[1])) : null;
