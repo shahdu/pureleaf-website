@@ -13,7 +13,7 @@ import {
 import { Add, Remove, Delete } from '@mui/icons-material';
 import Grid from '@mui/material/Grid2';
 import { useCart } from "../../hooks/useCart";
-
+import { createOrder } from "../../Services/OrderService"; 
 export const Cart = () => {
   const { cart, removeFromCart, clearCart , updateQuantity } = useCart();
   
@@ -46,6 +46,17 @@ export const Cart = () => {
       updateQuantity(productId, item.quantity - 1);
     }
   };
+    // Handle Order Creation
+    const handleCreateOrder = async () => {
+      try {
+        const order = await createOrder(cart, totalPrice, address);
+        console.log("Order created successfully:", order);
+        // Optionally, you can clear the cart after creating the order
+        clearCart();
+      } catch (error) {
+        console.error("Failed to create order:", error);
+      }
+    };
 
   return (
     <Box padding={3}>
@@ -161,6 +172,16 @@ export const Cart = () => {
                 sx={{ marginTop: 2 }}
               >
                 Proceed to Payment
+              </Button>
+
+              <Button
+                variant="contained"
+                color="success"
+                fullWidth
+                sx={{ marginTop: 2 }}
+                onClick={handleCreateOrder}
+              >
+                Create Order
               </Button>
 
               {/* Address Update Section */}
