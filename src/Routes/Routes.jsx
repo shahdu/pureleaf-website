@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
                 element: <Profile />,
               },
               {
-                path: "/createOrder",
+                path: "createOrder",
                 element: <CreateOrder />,
               },
             ],
