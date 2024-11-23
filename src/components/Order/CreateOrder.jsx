@@ -15,7 +15,7 @@ export const CreateOrder = () => {
     const decoded = decodeToken(token);
     const userId = decoded?.nameid;
 
-    const { cart, totalAmount, clearCart } = useContext(CartContext);
+    const { cart, totalAmount, clearCart,address } = useContext(CartContext);
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -50,6 +50,8 @@ export const CreateOrder = () => {
                         <img src={product.image} alt={product.title} width={"10%"} />
                         <p>Quantity: {product.quantity}</p>
                         <p>Price: {product.price * product.quantity}</p>
+                        <p>Address: {address}</p>
+
                     </div>
                 ))}
                 <p className="text-center text-lg underline m-5 text-pink-700">Total price: {totalAmount}</p>

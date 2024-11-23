@@ -16,10 +16,9 @@ import { Add, Remove, Delete } from '@mui/icons-material';
 import Grid from '@mui/material/Grid2';
 import { useCart } from "../../hooks/useCart";
 export const Cart = () => {
-  const { cart, removeFromCart, clearCart , updateQuantity,totalAmount, setTotalAmount } = useCart();
+  const { cart, removeFromCart, clearCart , updateQuantity,totalAmount, setTotalAmount,address, setAddress } = useCart();
   
   // Track address state
-  const [address, setAddress] = useState("");
   const [addressEditing, setAddressEditing] = useState(false);
   const navigate = useNavigate();
 

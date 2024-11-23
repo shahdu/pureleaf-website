@@ -5,6 +5,7 @@
 
     export const CartProvider = ({ children }) => {
         const [totalAmount, setTotalAmount] = useState([]);
+        const [address, setAddress] = useState([]);
 
     const loadCartFromLocalStorage = () => {
         const cartData = localStorage.getItem("cart");
@@ -75,7 +76,7 @@
 
     return (
         <CartContext.Provider
-        value={{ cart, addToCart, removeFromCart, clearCart, updateQuantity,totalAmount, setTotalAmount }}
+        value={{ cart, addToCart, removeFromCart, clearCart, updateQuantity,totalAmount, setTotalAmount,address, setAddress }}
         >
         {children}
         </CartContext.Provider>

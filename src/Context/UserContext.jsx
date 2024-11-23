@@ -53,6 +53,7 @@ export const UserProvider = ({ children }) => {
       totalPages,
       fetchUsers,
       refreshUsers,
+   
       }}>
       {children}
     </UsersContext.Provider>
