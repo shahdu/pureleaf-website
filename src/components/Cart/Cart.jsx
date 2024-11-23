@@ -50,7 +50,7 @@ export const Cart = () => {
   };
     // Handle Order Creation
     const handleCreateOrder = async () => {
-      navigate("/createOrder");
+      navigate("/dashboard/user/createOrder");
     };
 
   return (
