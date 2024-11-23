@@ -4,7 +4,7 @@ import { getOrders } from "../Services/OrderService";
 
 export const OrdersContext = createContext();
 
-export const OrderProvider = ({ children }) => {
+export const OrdersProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +18,7 @@ export const OrderProvider = ({ children }) => {
 
     } catch (error) {
       setError(error);
-      console.error("Error fetching users:", error);
+      console.error("Error fetching orders:", error);
     } finally {
       setIsLoading(false);
     }
