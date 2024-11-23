@@ -67,7 +67,7 @@ export const CreateOrder = () => {
           color="success"
           size="large"
           onClick={() => navigate("/")}
-          sx={{ mt: 3 }}
+          sx={{ mt: 3, mx: 2 }}
         >
           Back to Home
         </Button>
@@ -127,8 +127,19 @@ export const CreateOrder = () => {
           onClick={handleSubmit}
           disabled={loading}
           startIcon={loading && <CircularProgress size={20} color="inherit" />}
+          sx={{ mx: 2 }}
         >
           {loading ? "Processing..." : "Place Order"}
+        </Button>
+
+        <Button
+          variant="outlined"
+          color="success"
+          size="large"
+          onClick={() => navigate("/cart")}
+          sx={{ mx: 2 }}
+        >
+          Back to Cart
         </Button>
       </div>
     </div>
