@@ -160,15 +160,7 @@ export const Cart = () => {
               <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
                 Total Price: ${totalPrice.toFixed(2)}
               </Typography>
-              <Button
-                variant="contained"
-                color="success"
-                fullWidth
-                sx={{ marginTop: 2 }}
-              >
-                Proceed to Payment
-              </Button>
-
+        
               <Button
                 variant="contained"
                 color="success"

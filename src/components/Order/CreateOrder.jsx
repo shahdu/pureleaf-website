@@ -129,7 +129,7 @@ export const CreateOrder = () => {
           startIcon={loading && <CircularProgress size={20} color="inherit" />}
           sx={{ mx: 2 }}
         >
-          {loading ? "Processing..." : "Place Order"}
+          {loading ? "Processing..." : "Complete Order"}
         </Button>
 
         <Button

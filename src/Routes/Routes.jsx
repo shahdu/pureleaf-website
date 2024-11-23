@@ -57,9 +57,6 @@ export const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
-      },{
-        path: "/createOrder",
-        element: <CreateOrder />,
       },
 
       {
@@ -77,6 +74,10 @@ export const router = createBrowserRouter([
               {
                 path: "profile",
                 element: <Profile />,
+              },
+              {
+                path: "/createOrder",
+                element: <CreateOrder />,
               },
             ],
           },
