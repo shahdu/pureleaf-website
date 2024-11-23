@@ -26,6 +26,7 @@ import { AdminProductsList } from "../pages/Admin/ProductsList/AdminProductsList
 import { UpdateCategory } from "../components/Category/UpdateCategory";
 import { DataAnalytics } from "../pages/Admin/DataAnalytics";
 import { CreateOrder } from "../components/Order/CreateOrder";
+import { OrderList } from "../components/Order/OrderList";
 
 export const router = createBrowserRouter([
   {
@@ -99,6 +100,9 @@ export const router = createBrowserRouter([
               {
                 path: "users",
                 element: <UsersList />,
+              },{
+                path: "orders",
+                element: <OrderList />,
               },
               {
                 path: "products",

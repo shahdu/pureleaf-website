@@ -6,9 +6,11 @@ import { router } from "./Routes/Routes.jsx";
 import { CartProvider } from "./Context/CartContext.jsx";
 import { CategoryProvider } from "./Context/CategoryContext.jsx";
 import { UserProvider } from "./Context/UserContext.jsx";
+import { OrdersContext } from "./Context/OrderContext.jsx";
 
 export const App = () => {
   return (
+    <OrdersContext>
     <ProductProvider>
       <CategoryProvider>
       <CartProvider>
@@ -20,5 +22,6 @@ export const App = () => {
       </CartProvider>
       </CategoryProvider>
     </ProductProvider>
+    </OrdersContext>
   );
 };
