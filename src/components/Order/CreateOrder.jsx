@@ -26,12 +26,6 @@ export const CreateOrder = () => {
         const orderData = {
             userId,
             totalAmount,
-            orderDate: new Date(),
-            orderProducts: cart.map((product) => ({
-                productId: product.productId,
-                productQuantity: product.quantity,
-                productsPrice: product.price * product.quantity,
-            })),
         };
 
         try {
