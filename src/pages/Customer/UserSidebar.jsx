@@ -10,6 +10,7 @@ import {
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout'; 
 import { Link } from 'react-router-dom';
 
 // UserSidebar Component
@@ -35,6 +36,12 @@ export const UserSidebar = () => {
             <PersonIcon />
           </ListItemIcon>
           <ListItemText primary="Profile" />
+        </ListItemButton>
+        <ListItemButton component={Link} to="UserOrders">
+          <ListItemIcon>
+            <ShoppingCartCheckoutIcon />
+          </ListItemIcon>
+          <ListItemText primary="Orders" />
         </ListItemButton>
       </List>
     </Box>

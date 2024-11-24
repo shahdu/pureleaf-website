@@ -27,6 +27,7 @@ import { UpdateCategory } from "../components/Category/UpdateCategory";
 import { DataAnalytics } from "../pages/Admin/DataAnalytics";
 import { CreateOrder } from "../components/Order/CreateOrder";
 import { OrderList } from "../components/Order/OrderList";
+import { UserOrders } from "../pages/Customer/UserOrders";
 
 export const router = createBrowserRouter([
   {
@@ -79,6 +80,9 @@ export const router = createBrowserRouter([
               {
                 path: "createOrder",
                 element: <CreateOrder />,
+              }, {
+                path: "UserOrders",
+                element: <UserOrders />,
               },
             ],
           },

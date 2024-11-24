@@ -32,3 +32,14 @@ import axios from 'axios';
       throw error;
     }
   };
+
+  export const getOrderById = async (orderId) => {
+    try {
+      const response = await axios(`https://ecommerce-backend-uod8.onrender.com/api/v1/orders/${orderId}`);
+  
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching order:", error);
+      return [];
+    }
+  };
