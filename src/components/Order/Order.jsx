@@ -28,20 +28,12 @@ export const Order = ({ order }) => {
         },
       }}
     >
-      <TableCell>
-        <img
-          src={order.user.image}
-          alt={order.user.userName}
-          style={{
-            width: "40px",
-            height: "40px",
-            borderRadius: "50%",
-            border: "2px solid #81C784", // Light green border
-          }}
-        />
-      </TableCell>
+      <TableCell>{order.orderDate}</TableCell>
+      <TableCell>{order.totalAmount}</TableCell>
       <TableCell>{order.user.userName}</TableCell>
       <TableCell>{order.user.email}</TableCell>
+      <TableCell>{order.user.phone}</TableCell>
+
       <TableCell>
         {/* Ensure the date stays in one line */}
         <span style={{ whiteSpace: "nowrap" }}>{formattedDate}</span>
