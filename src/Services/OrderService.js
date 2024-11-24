@@ -25,9 +25,8 @@ import axios from 'axios';
       const response = await axios.get(
         "https://ecommerce-backend-uod8.onrender.com/api/v1/orders"
       );
-      console.log("Order created:", response.data);
       return response.data;
-      
+
     } catch (error) {
       console.error("Error creating order:", error.response?.data || error.message);
       throw error;
