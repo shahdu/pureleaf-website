@@ -4,7 +4,7 @@ import { TableCell, TableRow } from "@mui/material";
 // Order Component
 export const Order = ({ order, index }) => {
   // Format the createdAt date to a user-friendly format
-  const formattedDate = new Date(order.createdAt).toLocaleString("en-US", {
+  const formattedDate = new Date(order.orderDate).toLocaleString("en-US", {
     weekday: "short",
     year: "numeric",
     month: "short",
@@ -25,13 +25,12 @@ export const Order = ({ order, index }) => {
     >
       {/* Order Number */}
       <TableCell>{index + 1}</TableCell>
-      <TableCell>{order.orderDate}</TableCell>
-      <TableCell>{order.totalAmount}</TableCell>
-      <TableCell>{order.user.userName}</TableCell>
-      <TableCell>{order.user.email}</TableCell>
       <TableCell>
         <span style={{ whiteSpace: "nowrap" }}>{formattedDate}</span>
       </TableCell>
+      <TableCell>{order.totalAmount}</TableCell>
+      <TableCell>{order.user.userName}</TableCell>
+      <TableCell>{order.user.email}</TableCell>
       <TableCell>{order.user.phone}</TableCell>
     </TableRow>
   );

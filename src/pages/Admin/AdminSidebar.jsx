@@ -14,7 +14,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import { Link } from 'react-router-dom';
-
+import ReceiptIcon from '@mui/icons-material/Receipt';
 // AdminSidebar Component
 export const AdminSidebar = () => {
   return (
@@ -57,6 +57,7 @@ export const AdminSidebar = () => {
             <ShoppingCartIcon />
           </ListItemIcon>
           <ListItemText primary="Orders" />
+          <ReceiptIcon/>
         </ListItemButton>
 
         <ListItemButton component={Link} to="DataAnalytics">

@@ -24,12 +24,11 @@ export const Orders = () => {
                 backgroundColor: "#81C784", // Light green header background
               }}
             >
-              <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>Order #</TableCell>
+              <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>Order </TableCell>
               <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>Order Date</TableCell>
               <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>Total Amount</TableCell>
               <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>Username</TableCell>
               <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>Email</TableCell>
-              <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>Created At</TableCell>
               <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>Phone</TableCell>
             </TableRow>
           </TableHead>
