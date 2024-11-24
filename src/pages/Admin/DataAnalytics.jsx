@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnalytictsProducts } from './AnalytictsProducts';
 import { AnalysisUser } from './AnalytictsUsers';
+import { AnalytictsOrders } from './AnalytictsOrders';
 
 export const DataAnalytics = () => {
   return (
@@ -15,6 +16,7 @@ export const DataAnalytics = () => {
         <div style={{ flex: 1 }}>
           <AnalysisUser />
         </div>
+        <div><AnalytictsOrders/></div>
       </div>
     </div>
   );
