@@ -41,7 +41,7 @@ export const AnalytictsProducts = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: 5 }}>
       <Typography variant="h5" color="textPrimary" sx={{ mb: 3 }}>
-        Product Distribution by Category
+        Products Analytics
       </Typography>
       {products.length === 0 || categories.length === 0 ? (
         <Typography>Loading data...</Typography>

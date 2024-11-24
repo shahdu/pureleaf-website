@@ -32,13 +32,14 @@ export const AnalytictsOrders = () => {
   const userOrders = orders.filter((order) => order.user?.userId === userId);
 
   useEffect(() => {
-    // Group the orders by orderDate and calculate the total amount for each date
+    // Group the orders by month and year, calculate the total amount for each month
     const groupedOrders = userOrders.reduce((acc, order) => {
-      const orderDate = new Date(order.orderDate).toLocaleDateString(); // group by date (e.g., 'Nov 24, 2024')
-      if (!acc[orderDate]) {
-        acc[orderDate] = 0;
+      const orderDate = new Date(order.orderDate);
+      const monthYear = `${orderDate.toLocaleString('default', { month: 'short' })} ${orderDate.getFullYear()}`; // Format as "Nov 2024"
+      if (!acc[monthYear]) {
+        acc[monthYear] = 0;
       }
-      acc[orderDate] += order.totalAmount;
+      acc[monthYear] += order.totalAmount;
       return acc;
     }, {});
 
@@ -50,7 +51,7 @@ export const AnalytictsOrders = () => {
       labels: dates,
       datasets: [
         {
-          label: "Total Amount per Order Date",
+          label: "Total Amount per Month",
           data: totalAmounts,
           fill: false,
           borderColor: "#388E3C", // Line color
@@ -71,7 +72,7 @@ export const AnalytictsOrders = () => {
   return (
     <div className="container my-4">
       <Typography variant="h4" align="center" gutterBottom style={{ color: "#388E3C", fontWeight: "bold" }}>
-        My Orders
+        Orders Analytics
       </Typography>
 
       {userOrders.length === 0 ? (
@@ -89,6 +90,20 @@ export const AnalytictsOrders = () => {
                 plugins: {
                   tooltip: { enabled: true },
                   legend: { position: "top" },
+                },
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: "Month/Year",
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: "Total Amount",
+                    },
+                  },
                 },
               }}
               height={400}

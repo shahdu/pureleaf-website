@@ -35,7 +35,7 @@ export const AnalysisUser = () => {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: 5, width: "100%", maxWidth: "360px", height: "300px" }}>
       <Typography variant="h5" color="textPrimary" sx={{ mb: 10}}>
-        User Role Distribution
+        Users Analytics
       </Typography>
       {isLoading ? (
         <CircularProgress color="primary" />
