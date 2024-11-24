@@ -54,10 +54,10 @@ export const AdminSidebar = () => {
 
         <ListItemButton component={Link} to="orders">
           <ListItemIcon>
-            <ShoppingCartIcon />
+          <ReceiptIcon/>
           </ListItemIcon>
           <ListItemText primary="Orders" />
-          <ReceiptIcon/>
+          
         </ListItemButton>
 
         <ListItemButton component={Link} to="DataAnalytics">

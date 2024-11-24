@@ -2,24 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Typography,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableContainer,
-  Paper,
   CircularProgress,
   Box,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend } from "chart.js";
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend, PointElement } from "chart.js";
 import { OrdersContext } from "../../Context/OrderContext";
 import { decodeToken } from "../../Utilities/TokenDecode";
 
-// Register necessary Chart.js components
-ChartJS.register(LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
+// Register all necessary Chart.js components
+ChartJS.register(LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend, PointElement);
 
 export const AnalytictsOrders = () => {
   const navigate = useNavigate();
