@@ -74,7 +74,7 @@ export const UserOrders = () => {
                 }}
               >
                 <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>
-                  # (Index)
+                  Order
                 </TableCell>
                 <TableCell sx={{ color: "#fff", fontWeight: "bold" }}>
                   Order Date
